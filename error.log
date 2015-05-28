@@ -1,0 +1,276 @@
+[Mon Apr 20 2015 16:58:58 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:227:27
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 16:59:11 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 16:59:19 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:00:24 GMT+0800 (中国标准时间)] /login
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:74:13
+[Mon Apr 20 2015 17:00:24 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:00:45 GMT+0800 (中国标准时间)] /reg
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:31:13
+[Mon Apr 20 2015 17:00:45 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:00:56 GMT+0800 (中国标准时间)] /reg
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:31:13
+[Mon Apr 20 2015 17:00:56 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:00:58 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:01:43 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:01:47 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:01:50 GMT+0800 (中国标准时间)] /reg
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:31:13
+[Mon Apr 20 2015 17:01:50 GMT+0800 (中国标准时间)] /reg
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:31:13
+[Mon Apr 20 2015 17:01:50 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:02:08 GMT+0800 (中国标准时间)] /reg
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:31:13
+[Mon Apr 20 2015 17:02:08 GMT+0800 (中国标准时间)] /reg
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:31:13
+[Mon Apr 20 2015 17:02:08 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:02:44 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:02:47 GMT+0800 (中国标准时间)] /reg
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:31:13
+[Mon Apr 20 2015 17:02:47 GMT+0800 (中国标准时间)] /reg
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:335:11)
+    at ServerResponse.res.setHeader (d:\node\bs\node_modules\express\node_modules\connect\lib\patch.js:133:22)
+    at ServerResponse.res.set.res.header (d:\node\bs\node_modules\express\lib\response.js:578:10)
+    at ServerResponse.res.send (d:\node\bs\node_modules\express\lib\response.js:143:12)
+    at fn (d:\node\bs\node_modules\express\lib\response.js:824:10)
+    at View.exports.renderFile [as engine] (d:\node\bs\node_modules\ejs\lib\ejs.js:323:3)
+    at View.render (d:\node\bs\node_modules\express\lib\view.js:76:8)
+    at Function.app.render (d:\node\bs\node_modules\express\lib\application.js:523:10)
+    at ServerResponse.res.render (d:\node\bs\node_modules\express\lib\response.js:828:7)
+    at d:\node\bs\routes\index.js:31:13
+[Mon Apr 20 2015 17:02:47 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:222:17
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5
+[Mon Apr 20 2015 17:05:25 GMT+0800 (中国标准时间)] /
+ReferenceError: Post is not defined
+    at d:\node\bs\routes\index.js:12:9
+    at callbacks (d:\node\bs\node_modules\express\lib\router\index.js:164:37)
+    at param (d:\node\bs\node_modules\express\lib\router\index.js:138:11)
+    at pass (d:\node\bs\node_modules\express\lib\router\index.js:145:5)
+    at Router._dispatch (d:\node\bs\node_modules\express\lib\router\index.js:173:5)
+    at Object.router (d:\node\bs\node_modules\express\lib\router\index.js:33:10)
+    at next (d:\node\bs\node_modules\express\node_modules\connect\lib\proto.js:169:15)
+    at d:\node\bs\node_modules\express\node_modules\connect\node_modules\express-session\index.js:377:7
+    at d:\node\bs\node_modules\connect-mongo\lib\connect-mongo.js:227:27
+    at d:\node\bs\node_modules\connect-mongo\node_modules\mongodb\lib\mongodb\collection\query.js:147:5

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html> 
+  <head> 
+    <title><%= title %> - Microblog</title> 
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link href="stylesheets/style.css" rel="stylesheet">
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.validate.min.js"></script>
+
+
+
+  </head>
+  <body> 
+  <div class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">Microblog</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+               <li class="active"><a title="首页" href="/">首页</a></li>
+
+			   <% if (user) { %>
+                  <li><a title="系统设置" href="/sys">系统设置</a></li>
+				  <li><a title="登出" href="/logout">登出</a></li>
+				<% } else { %>
+				  <li><a title="登录" href="/login">登录</a></li>
+				  <li><a title="注册" href="/reg">注册</a></li>
+				<% } %>
+              <li><a title="目录" href="/category">目录</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+  <div id="container" class="container"> 
+	<% if (success) { %>
+    <div class="alert alert-success" role="alert"><%= success %></div>
+	<% } %>
+	<% if (error) { %>
+    <div class="alert alert-warning" role="alert"><%= error %> </div>
+	<% } %>
+	  
