@@ -1,6 +1,7 @@
 var crypto = require('crypto'),
     fs = require('fs'),
     Sys = require('../models/sys.js'),
+    file = require('../models/file.js'),
     User = require('../models/user.js');
 
 module.exports = function (app) {
@@ -12,6 +13,27 @@ module.exports = function (app) {
             error: req.flash('error').toString()
         });
     });
+
+    app.get('/file', function (req, res) {
+        if(file.conf.ServerName) res.setHeader('Server',file.conf.ServerName);
+        var httppath = '/';
+        try{
+            httppath = path.normalize(decodeURI(url.parse(req.url).pathname.replace(/\.\./g, '')));
+        }
+        catch(err){
+            httppath = path.normalize(url.parse(req.url).pathname.replace(/\.\./g, ''));
+        }
+        var realpath = path.join(file.conf.Root, httppath );
+        var ext = path.extname(realpath);
+        if(ext.search(file.conf.DynamicExt) != -1){
+            if(typeof dynamicCallBack === 'function') file.dynamicCallBack(req,res,httppath,realpath);
+            else
+                file.Com.error(res,500,"<h4>Error : Can't find the dynamic page callback function!</h4>");
+        }
+        else
+            file.Com.pathHandle(req,res,realpath,httppath);
+    });
+
 
     app.get('/sys', checkLogin);
     app.get('/sys', function (req, res) {
