@@ -1,8 +1,9 @@
 var crypto = require('crypto'),
     fs = require('fs'),
     Sys = require('../models/sys.js'),
-    file = require('../models/file.js'),
-    User = require('../models/user.js');
+    server = require('../models/server.js'),
+    User = require('../models/user.js'),
+    async = require('async');
 
 module.exports = function (app) {
     app.get('/', function (req, res) {
@@ -15,23 +16,74 @@ module.exports = function (app) {
     });
 
     app.get('/file', function (req, res) {
-        if(file.conf.ServerName) res.setHeader('Server',file.conf.ServerName);
-        var httppath = '/';
-        try{
-            httppath = path.normalize(decodeURI(url.parse(req.url).pathname.replace(/\.\./g, '')));
+       /* server.createServer(3030,function(){});*/
+        var path = 'uploads',fileInfo = [];
+        fs.readdir(path, function(err, files){
+            if(err) {
+                console.log("err");
+            }
+            files.forEach(function(file){
+
+                fs.stat(path + '/' + file, function(err, stat){
+                    if(err){console.log(err); return;}
+                    if(stat.isDirectory()){
+                        // 如果是文件夹遍历
+                        //explorer(file);
+                    }else{
+
+                    }
+
+                    // 读出所有的文件
+                    fileInfo.push('文件名:' + path + '/' + file);
+                    console.info(fileInfo);
+                });
+            });
+
+
+            var Timer = true;
+            setInterval(function(){
+                if(fileInfo.length == files.length && Timer) {
+                    res.render('file', {
+                        title: 'file',
+                        user: req.session.user,
+                        fileInfo : fileInfo,
+                        success: req.flash('success').toString(),
+                        error: req.flash('error').toString()
+                    });
+                    Timer = false;
+                }
+
+
+            },1000);
+        });
+
+        function explorer(path){
+
+            fs.readdir(path, function(err, files){
+                //err 为错误 , files 文件名列表包含文件夹与文件
+                if(err){
+                    console.log('error:\n' + err);
+                    return;
+                }
+                files.forEach(function(file){
+
+                    fs.stat(path + '/' + file, function(err, stat){
+                        if(err){console.log(err); return;}
+                        if(stat.isDirectory()){
+                            // 如果是文件夹遍历
+                            explorer(path + '/' + file);
+                        }else{
+                            // 读出所有的文件
+                            console.log('文件名:' + path + '/' + file);
+                        }
+                    });
+
+                });
+
+            });
         }
-        catch(err){
-            httppath = path.normalize(url.parse(req.url).pathname.replace(/\.\./g, ''));
-        }
-        var realpath = path.join(file.conf.Root, httppath );
-        var ext = path.extname(realpath);
-        if(ext.search(file.conf.DynamicExt) != -1){
-            if(typeof dynamicCallBack === 'function') file.dynamicCallBack(req,res,httppath,realpath);
-            else
-                file.Com.error(res,500,"<h4>Error : Can't find the dynamic page callback function!</h4>");
-        }
-        else
-            file.Com.pathHandle(req,res,realpath,httppath);
+
+
     });
 
 

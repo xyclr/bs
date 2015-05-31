@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 var conf = {
-    Root : 'public', //文件的根路径
+    Root : 'uploads', //文件的根路径
     IndexEnable : true, //开启目录功能？
     IndexFile : 'index.html', //目录欢迎文件
     DynamicExt : /^\.njs$/ig, //动态页面后缀（需要.）
@@ -260,9 +260,11 @@ var Com = {
                         if(err) Com.error(response,404);
                         else{
                             var httpP = httppath.replace(/\\/g,'/');
-                            var txt = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Index of '+httpP+'</title></head><body><h1>...Index of '+httpP+'</h1><hr ><pre>';
+                           /* var txt = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Index of '+httpP+'</title></head><body><h1>Index of '+httpP+'</h1><hr ><pre>';*/
+                            var txt = '';
                             if(httpP!='/')
-                                txt += '<a href="'+path.dirname(httppath).replace(/\\/g,'/')+'">/</a>\n';
+                                txt = {    "code": "CA1998",    "price": 1780,    "tickets": 5};
+                                //txt += '<a href="'+path.dirname(httppath).replace(/\\/g,'/')+'">../</a>\n';
                             var fileI = 0;
                             var fileInfos = [];
                             var fsCallback = function(err,stats,filename){
@@ -281,7 +283,8 @@ var Com = {
                                         var ss = fileInfos[i][0].isDirectory()?'-':fileInfos[i][0].size.toString();
                                         txt += '<a href="'+path.join(httppath,sf).replace(/\\/g,'/')+'">'+sf+'</a>'+''.pad(50-sf.len(),' ')+st+''.pad(35-st.len()-ss.length,' ')+ss+'\n'
                                     }
-                                    txt += '</pre><hr ><h3>Powered by '+conf.ServerName+'</h3></body></html>';
+                                    //txt += '</pre><hr ><h3>Powered by '+conf.ServerName+'</h3></body></html>';
+                                    txt = {    "code": "CA1998",    "price": 1780,    "tickets": 5};
                                     var cache = new HttpCache(dirmtime.getTime(),new Buffer(txt));
                                     Com.cache(response,dirmtime.toUTCString(),'html');
                                     Com.flush(request,response,cache,'html','text/html');
@@ -363,3 +366,27 @@ var Com = {
     }
 };
 
+/* 对外的接口 */
+exports.createServer = function(port,dynamicCallBack){
+    if(!port) port = 80;
+    http.createServer(function(req,res){
+        if(conf.ServerName) res.setHeader('Server',conf.ServerName);
+        var httppath = '/';
+        try{
+            httppath = path.normalize(decodeURI(url.parse(req.url).pathname.replace(/\.\./g, '')));
+        }
+        catch(err){
+            httppath = path.normalize(url.parse(req.url).pathname.replace(/\.\./g, ''));
+        }
+        var realpath = path.join(conf.Root, httppath );
+        var ext = path.extname(realpath);
+        if(ext.search(conf.DynamicExt) != -1){
+            if(typeof dynamicCallBack === 'function')
+                dynamicCallBack(req,res,httppath,realpath);
+            else
+                Com.error(res,500,"<h4>Error : Can't find the dynamic page callback function!</h4>");
+        }
+        else
+            Com.pathHandle(req,res,realpath,httppath);
+    }).listen(port);
+};
