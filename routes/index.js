@@ -17,74 +17,100 @@ module.exports = function (app) {
 
     app.get('/file', function (req, res) {
        /* server.createServer(3030,function(){});*/
-        var path = 'uploads',fileInfo = [];
-        fs.readdir(path, function(err, files){
-            if(err) {
-                console.log("err");
-            }
-            files.forEach(function(file){
-
-                fs.stat(path + '/' + file, function(err, stat){
-                    if(err){console.log(err); return;}
-                    if(stat.isDirectory()){
-                        // 如果是文件夹遍历
-                        //explorer(file);
-                    }else{
-
-                    }
-
-                    // 读出所有的文件
-                    fileInfo.push('文件名:' + path + '/' + file);
-                    console.info(fileInfo);
-                });
-            });
-
-
-            var Timer = true;
-            setInterval(function(){
-                if(fileInfo.length == files.length && Timer) {
-                    res.render('file', {
-                        title: 'file',
-                        user: req.session.user,
-                        fileInfo : fileInfo,
-                        success: req.flash('success').toString(),
-                        error: req.flash('error').toString()
-                    });
-                    Timer = false;
-                }
-
-
-            },1000);
-        });
-
+        var path = 'public',fileInfo = [];
+        explorer(path);
         function explorer(path){
-
             fs.readdir(path, function(err, files){
                 //err 为错误 , files 文件名列表包含文件夹与文件
                 if(err){
                     console.log('error:\n' + err);
                     return;
-                }
+                };
                 files.forEach(function(file){
 
                     fs.stat(path + '/' + file, function(err, stat){
                         if(err){console.log(err); return;}
                         if(stat.isDirectory()){
                             // 如果是文件夹遍历
-                            explorer(path + '/' + file);
                         }else{
                             // 读出所有的文件
-                            console.log('文件名:' + path + '/' + file);
-                        }
+                        };
+                        fileInfo.push(file);
                     });
-
                 });
 
+                var Timer = true;
+                setInterval(function(){
+                    if(fileInfo.length == files.length && Timer) {
+                        res.render('file', {
+                            title: 'file',
+                            user: req.session.user,
+                            fileInfo : fileInfo,
+                            success: req.flash('success').toString(),
+                            error: req.flash('error').toString()
+                        });
+                        Timer = false;
+                    }
+
+                },1000);
             });
         }
+    });
+    app.get('/file/:name', function (req, res){
+        var  filename = req.params.name;
+        var path = 'public' + '/' + filename,fileInfo = {};
+        fs.readdir(path, function(err, files){
+            //err 为错误 , files 文件名列表包含文件夹与文件
+            if(err){
+                console.log('error:\n' + err);
+                return;
+            };
+            files.forEach(function(file){
 
+                fs.stat(path + '/' + file, function(err, stat){
+                    var fileType = "file",ext = (file + "").split(".").pop()
+                    if(err){console.log(err); return;}
+
+                    if (ext && ext.search(/gif|jpg|png|ico/ig)!=-1) {
+                        fileType = "img"
+                    }
+                    fileInfo[file] = {
+                        "name" : file,
+                        "src" : path + "/" + file,
+                        "type" : fileType
+                    };
+                    //fileInfo.push(file);
+                });
+            });
+
+            var Timer = true;
+            setInterval(function(){
+               if(count(fileInfo)  == files.length && Timer) {
+                   // res.writeHead(200, {'Content-type' : 'text/html'});
+                    res.json({"fileInfo": fileInfo});
+                    res.end('');
+                    Timer = false;
+               }
+
+            },1000);
+        });
+
+        function count(o){
+            var t = typeof o;
+            if(t == 'string'){
+                return o.length;
+            }else if(t == 'object'){
+                var n = 0;
+                for(var i in o){
+                    n++;
+                }
+                return n;
+            }
+            return false;
+        };
 
     });
+
 
 
     app.get('/sys', checkLogin);

@@ -4130,6 +4130,8 @@ ul.notes li div {
   float: left;
   width: 220px;
 }
+.file-box .image {text-align: center}
+.file-box .image img {width:auto;height: 100%;margin: 0 auto;}
 .file-manager h5 {
   text-transform: uppercase;
 }
