@@ -29,7 +29,7 @@ app.use(flash());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 
-app.use(express.bodyParser({ keepExtensions: true, uploadDir: './public/images',defer:true }));
+//app.use(express.bodyParser({ keepExtensions: true, uploadDir: './public/images',defer:true }));
 app.use(express.methodOverride());
 
 app.use(express.cookieParser());
