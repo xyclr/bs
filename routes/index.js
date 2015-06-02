@@ -255,7 +255,12 @@ module.exports = function (app) {
     });
 
     app.use(function (req, res) {
-        res.render("404");
+        res.render('404', {
+            title: '404',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
 
     function checkLogin(req, res, next) {
