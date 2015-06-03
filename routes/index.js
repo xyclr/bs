@@ -111,8 +111,6 @@ module.exports = function (app) {
 
     });
 
-
-
     app.get('/sys', checkLogin);
     app.get('/sys', function (req, res) {
         Sys.get("settings1", function (err, sys) {
