@@ -17,7 +17,17 @@ var settings = require('./settings');
 var flash = require('connect-flash');
 
 
+
+
 var app = express();
+
+var multer  = require('multer');
+app.use(multer({
+  dest: './uploads/',
+  rename: function (fieldname, filename) {
+    return filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
+  }
+}))
 
 
 
@@ -29,7 +39,7 @@ app.use(flash());
 app.use(express.favicon());
 //app.use(express.logger('dev'));
 
-//app.use(express.bodyParser({ keepExtensions: true, uploadDir: './public/images',defer:true }));
+app.use(express.bodyParser({ keepExtensions: true, uploadDir: './public/images',defer:true }));
 app.use(express.methodOverride());
 
 app.use(express.cookieParser());

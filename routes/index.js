@@ -3,7 +3,7 @@ var crypto = require('crypto'),
     Sys = require('../models/sys.js'),
     User = require('../models/user.js'),
     async = require('async'),
-    formidable = require('formidable');
+    multer  = require('multer');
 
 module.exports = function (app) {
     app.get('/', function (req, res) {
@@ -123,8 +123,17 @@ module.exports = function (app) {
         res.end(html);
     });
 
-    app.post('/upload', function (req, res) {
-        if(!isFormData(req)){
+
+
+    app.post('/upload',multer({ dest: './uploads1/' }),
+        function(req, res) {
+            res.end("over");
+    });
+
+    /*app.post('/upload', function (req, res) {
+        console.log(req.body)
+        console.log(req.files)
+       if(!isFormData(req)){
             res.statusCode = 400;
             res.end('Bad request : expecting multipart/form-data');
             return ;
@@ -146,7 +155,7 @@ module.exports = function (app) {
             var type = req.headers['content-type'] || '';
             return 0 == type.indexOf('multipart/form-data');
         }
-    })
+    })*/
 
     app.get('/sys', checkLogin);
     app.get('/sys', function (req, res) {
