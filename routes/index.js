@@ -1,9 +1,9 @@
 var crypto = require('crypto'),
     fs = require('fs'),
     Sys = require('../models/sys.js'),
-    server = require('../models/server.js'),
     User = require('../models/user.js'),
-    async = require('async');
+    async = require('async'),
+    formidable = require('formidable');
 
 module.exports = function (app) {
     app.get('/', function (req, res) {
@@ -110,6 +110,43 @@ module.exports = function (app) {
         };
 
     });
+
+    app.get('/upload', function (req, res) {
+        var html = '<html><head><title>ToDoList</title></head><body>'
+            + '<form method="post" action="/upload" enctype="multipart/form-data"  >'
+            +'<p><input type="text" name="name" /></p>'
+            +'<p><input type="file" name="file" /></p>'
+            +'<p><input type="submit" value="Upload" /></p>'
+            +'</form></body></html>';
+        res.setHeader('Content-Type','text/html');
+        res.setHeader('Content-Length',Buffer.byteLength(html));
+        res.end(html);
+    });
+
+    app.post('/upload', function (req, res) {
+        if(!isFormData(req)){
+            res.statusCode = 400;
+            res.end('Bad request : expecting multipart/form-data');
+            return ;
+        }
+
+        var form = new formidable.IncomingForm({uploadDir:"./uploads"});
+        form.parse(req,function(err,fields,files){
+            //console.info(fields);
+            //console.info(files);
+            res.end('upload complete!');
+        });
+        form.on('progress', function(bytesReceived, bytesExpected){
+            var percent = Math.floor(bytesReceived / bytesExpected * 100);
+            console.log(percent);
+        });
+
+
+        function isFormData(req){
+            var type = req.headers['content-type'] || '';
+            return 0 == type.indexOf('multipart/form-data');
+        }
+    })
 
     app.get('/sys', checkLogin);
     app.get('/sys', function (req, res) {
