@@ -7,11 +7,12 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.17.8",
-    "ejs": "*",
-    "mongodb": "*",
-    "connect-mongo": "*",
+    "ccap": "*",
     "connect-flash": "*",
-    "ccap": "*"
+    "connect-mongo": "*",
+    "ejs": "*",
+    "express": "3.17.8",
+    "fs-extra": "^0.18.4",
+    "mongodb": "*"
   }
 }

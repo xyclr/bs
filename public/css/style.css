@@ -3398,6 +3398,11 @@ table.table-mail tr td {
   float: left;
   margin-left: 4px;
 }
+.ibox-tools-btn {
+  display: inline-block;
+  float: right;
+  margin-top:-9px;
+}
 .ibox-tools {
   display: inline-block;
   float: right;
@@ -4205,6 +4210,16 @@ ul.notes li div {
   margin-bottom: 20px;
   margin-right: 20px;
 }
+.file.selected {
+  border-color: #1c84c6;
+}
+.file  .badge-select {
+  visibility: hidden;
+}
+.file.selected .badge-select {
+  visibility: visible;
+}
+
 .file-manager .hr-line-dashed {
   margin: 15px 0;
 }
@@ -4234,6 +4249,8 @@ ul.notes li div {
   background-color: #f8f8f8;
   border-top: 1px solid #e7eaec;
 }
+.file .file-name p {word-break: break-all; height: 20px; overflow: hidden; display: block;margin-bottom:2px;color:#ccc;}
+.file .file-name p.name {font-size:14px;color:#000;}
 .file-name small {
   color: #676a6c;
 }

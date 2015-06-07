@@ -23,9 +23,19 @@ var app = express();
 
 var multer  = require('multer');
 app.use(multer({
-  dest: './uploads/',
+  dest: settings.uploadPath,
   rename: function (fieldname, filename) {
     return filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
+  },
+  limits: {
+    fileSize: 10000000
+  },
+  onFileSizeLimit: function(file){
+    //如果大于100M,删除它
+    if(file.size > 100000000) {
+      fs.unlink('./' + file.path) // delete the partially written file
+    }
+
   }
 }))
 
@@ -39,7 +49,7 @@ app.use(flash());
 app.use(express.favicon());
 //app.use(express.logger('dev'));
 
-//app.use(express.bodyParser({ keepExtensions: true, uploadDir: './public/images',defer:true }));
+app.use(express.bodyParser({ keepExtensions: true, uploadDir: settings.staticSever,defer:true }));
 app.use(express.methodOverride());
 
 app.use(express.cookieParser());
@@ -53,7 +63,7 @@ app.use(express.session({
 }));
 
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, settings.staticSever)));
 
 
 // development only
