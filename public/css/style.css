@@ -4158,6 +4158,9 @@ ul.notes li div {
   margin-right: 8px;
   color: #3d4d5d;
 }
+.folder-list li.cur a,.folder-list li.cur i {
+  color:#18a689;
+}
 .category-list li a {
   color: #666666;
   display: block;

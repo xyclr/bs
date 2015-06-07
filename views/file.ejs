@@ -267,10 +267,27 @@
             html = '<div class="alert alert-success alert-dismissable"> <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button> <span>'+ msg+'</span> </div>'
         };
         $(html).insertBefore($("#fileUploadForm .form-group").eq(0));
-        setTimeout(function(){
-            $(".folder-list a:contains('" +path +"')").eq(0).click();
-        },500)
+        toastr.success('Upload Success!');
+        $(".folder-list a:contains('" +path +"')").eq(0).click();
     }
+
+    var isEmptyValue = function(value) {
+        var type;
+        if(value == null) { // 等同于 value === undefined || value === null
+            return true;
+        }
+        type = Object.prototype.toString.call(value).slice(8, -1);
+        switch(type) {
+            case 'String':
+                return !$.trim(value);
+            case 'Array':
+                return !value.length;
+            case 'Object':
+                return $.isEmptyObject(value); // 普通对象使用 for...in 判断，有 key 即为 false
+            default:
+                return false; // 其他对象均视作非空
+        }
+    };
 
     $(function(){
         $(".folder-list a").click(function(){
@@ -279,22 +296,30 @@
                 url: "/file/" + path,
                 type: 'GET',
                 success: function(data){
-                    console.info(data);
                     var html = "";
-                    $.each(data.fileInfo,function(i,v){
-                        html  +=  '<div class="file-box" title="' + v.name +'">' +'<div class="file"><span class="badge badge-success badge-select">selected</span>' + '<a href="javascript:void(0)">' + '<span class="corner"></span>' ;
-                        if(v["type"] == "file") {
-                            html += '<div class="icon">' + '<i class="fa fa-file"></i>' + '</div>' ;
-                        } else {
-                            html += '<div class="image"><img alt="image" class="img-responsive" src="' + v.path.split("public")[1] + '"></div>'
-                        }
-                        html += '<div class="file-name"><p class="name" >Name:' + v.name + '</p><p class="size">Size: ' + v.size + '</p><p class="time">Time: ' + v.time + '</p></div></a></div></div>';
-                    });
+                    if(!isEmptyValue(data.fileInfo)) {
+                        $.each(data.fileInfo,function(i,v){
+                            html  +=  '<div class="file-box" title="' + v.name +'">' +'<div class="file"><span class="badge badge-success badge-select">selected</span>' + '<a href="javascript:void(0)">' + '<span class="corner"></span>' ;
+                            if(v["type"] == "file") {
+                                html += '<div class="icon">' + '<i class="fa fa-file"></i>' + '</div>' ;
+                            } else {
+                                html += '<div class="image"><img alt="image" class="img-responsive" src="' + v.path.split("public")[1] + '"></div>'
+                            }
+                            html += '<div class="file-name"><p class="name" >Name:' + v.name + '</p><p class="size">Size: ' + v.size + '</p><p class="time">Time: ' + v.time + '</p></div></a></div></div>';
+                        });
+                    } else {
+                        html = '<div class=" text-center animated fadeInDown" style="padding:50px 0;"> <h3>File List Empty!!!</h3> </div>'
+                    }
+
+
                     $("#list-files").attr({"path" : path }).html(html);
+                    $("#list-files").prev().find("h5").html(path +" Files List");
                     $('#list-files .file-box').each(function() {
                         animationHover(this, 'pulse');
                     });
-                    $('#fileUpload').modal('hide')
+                    $(".folder-list li").removeClass("cur");
+                    $(".folder-list li:contains('" +path +"')").addClass("cur");
+                    $('#fileUpload').modal('hide');
 
                 },
                 error: function(xmlHTTPRequest, status, error){
@@ -315,11 +340,11 @@
                 type: 'POST',
                 data: {delList : delList,delFilePath : path},
                 success: function(data){
-                    alert("删除成功");
                     $(".folder-list a:contains('" +path +"')").eq(0).click();
+                    toastr.success('Del Success!');
                 },
                 error: function(error){
-                    alert("失败");
+                    toastr.error('Del Error!')
                 }
             })
             return false;
