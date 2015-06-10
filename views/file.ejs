@@ -190,24 +190,28 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="ibox-title">
-                                <h5>Files List<small></small></h5>
-                                <div class="ibox-tools-btn">
-                                    <a class="btn  btn-primary" data-toggle="modal" data-target="#fileUpload">
-                                        <i class="fa fa-upload"></i> Upload File
-                                    </a>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <h5>Files List<small></small></h5>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="ibox-tools-btn">
+                                            <a class="btn  btn-primary" data-toggle="modal" data-target="#fileUpload">
+                                                <i class="fa fa-upload"></i> Upload File
+                                            </a>
 
-                                    <a class="btn  btn-primary" id="btn-select-all">
-                                        Select All
-                                    </a>
-                                    <a class="btn  btn-primary" id="btn-select-cancel">
-                                        Cancel Select
-                                    </a>
+                                            <a class="btn  btn-primary" id="btn-select-all">
+                                                Select All
+                                            </a>
+                                            <a class="btn  btn-primary" id="btn-select-cancel">
+                                                Cancel Select
+                                            </a>
 
-                                    <a class="btn  btn-warning" id="btn-file-del">
-                                        <i class="fa fa-trash-o"></i> Del Select
-                                    </a>
-
-
+                                            <a class="btn  btn-warning" id="btn-file-del">
+                                                <i class="fa fa-trash-o"></i> Del Select
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="ibox-content"  id="list-files" style="overflow: hidden">
@@ -245,51 +249,40 @@
                             <option value="video">video</option>
                             <option value="audio">audio</option>
                         </select>
-                        <div>
-                            <iframe name='hidden_frame' id="hidden_frame" style='display:none'></iframe>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" id="file_upload" value="Upload"/>
-                        </div>
+                        <iframe name="hidden_frame" id="hidden_frame" style="display:none"></iframe>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" id="file_upload" value="Upload"/>
+                </div>
             </form>
         </div>
     </div>
 </div>
 <script type="text/javascript">
 
+    //upload callback
     function submitCb(type,msg,path){
-        var alert =  $("#fileUploadForm .modal-body"),html = '';
+        var alert =  $("#fileUploadForm .modal-body");
         if(type ==  "eror") {
-            html = '<div class="alert alert-warning alert-dismissable"> <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button> <span>'+ msg+'</span> </div>'
+            toastr.error('Upload Fail!');
         }
         else {
-            html = '<div class="alert alert-success alert-dismissable"> <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button> <span>'+ msg+'</span> </div>'
+            toastr.success('Upload Success!');
         };
-        $(html).insertBefore($("#fileUploadForm .form-group").eq(0));
-        toastr.success('Upload Success!');
         $(".folder-list a:contains('" +path +"')").eq(0).click();
     }
 
-    var isEmptyValue = function(value) {
-        var type;
-        if(value == null) { // 等同于 value === undefined || value === null
-            return true;
-        }
-        type = Object.prototype.toString.call(value).slice(8, -1);
-        switch(type) {
-            case 'String':
-                return !$.trim(value);
-            case 'Array':
-                return !value.length;
-            case 'Object':
-                return $.isEmptyObject(value); // 普通对象使用 for...in 判断，有 key 即为 false
-            default:
-                return false; // 其他对象均视作非空
-        }
-    };
 
     $(function(){
+
+        //upload file form
+        var formHtml = '<div class="alert alert-warning alert-dismissable"> <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button> <span>支持JPG,JPEG,GIF,BMP,SWF,RMVB,RM,AVI文件的上传,文件小于10MB</span> </div> <div class="form-group"><label>file path</label> <input type="file" name="file" placeholder="File name" class="form-control"></div> <div class="form-group"> <label>upload path</label> <select name="src" class="form-control"> <option value="images" selected>images</option> <option value="video">video</option> <option value="audio">audio</option> </select> <iframe name="hidden_frame" id="hidden_frame" style="display:none"></iframe> </div>';
+        $('#fileUpload').on('show.bs.modal', function (e) {
+            $(this).find(".modal-body").html(formHtml)
+        });
+
         $(".folder-list a").click(function(){
             var path = $.trim($(this).text());
             $.ajax({
@@ -329,6 +322,7 @@
             return false;
         });
 
+        //del file
         $("#btn-file-del").click(function(){
             var delList = [],path = $("#list-files").attr("path");
             $(".file-box:has('.selected')").each(function(){

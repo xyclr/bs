@@ -4,7 +4,8 @@ var crypto = require('crypto'),
     User = require('../models/user.js'),
     async = require('async'),
     multer  = require('multer'),
-    settings = require('../settings');
+    settings = require('../settings'),
+    stServer = require('../models/stServer');
 
 
 /* 获取Http时间（2012-12-21 19:30形式） */
@@ -124,6 +125,22 @@ module.exports = function (app) {
 
     });
 
+    app.get('/st/', function (req, res) {
+        stServer(req, res);
+    });
+    app.get('/st/:name/', function (req, res) {
+        stServer(req, res);
+    });
+    app.get('/st/:name/:name/', function (req, res) {
+        stServer(req, res);
+    });
+    app.get('/st/:name/:name/:name/', function (req, res) {
+        stServer(req, res);
+    });
+    app.get('/st/:name/:name/:name/:name/', function (req, res) {
+        stServer(req, res);
+    });
+
 
 
     app.get('/upload', function (req, res) {
@@ -147,7 +164,7 @@ module.exports = function (app) {
         var realpath = settings.uploadPath + req.body.src;
         var tmp_path = obj.file.path;
         var new_path =  realpath + "/" +obj.file.name;
-       // console.log("原路径："+tmp_path);
+        // console.log("原路径："+tmp_path);
         //console.log("新路径："+new_path);
         fs.move(tmp_path, new_path, function (err) {
             var scriptStr = '<script>parent.submitCb("success","upload success!",'+ '"'+req.body.src+'"'+')</script>';
