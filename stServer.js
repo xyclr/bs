@@ -260,9 +260,10 @@ var Com = {
                         if(err) Com.error(response,404);
                         else{
                             var httpP = httppath.replace(/\\/g,'/');
-                            var txt = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Index of '+httpP+'</title></head><body><h1>Index of '+httpP+'</h1><hr ><pre>';
+                            var txt = '<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>INSPINIA | Dashboard</title> <link href="http://127.0.0.1:3000/css/bootstrap.min.css" rel="stylesheet"> <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> <link href="http://127.0.0.1:3000/css/animate.css" rel="stylesheet"> <style> h5 {font-size:16px;color:#000;} .file-list li {width:100%;overflow:hidden;font-size:14px;margin:2px 0;display:table;} .file-list li a {display:table-cell;color:#333;width:300px;margin-right:10px;overflow:hidden;word-wrap:normal;white-space:nowrap;text-overflow:ellipsis;} .file-list li a:hover {color:#337ab7;text-decoration:none;}.file-list li span {color:#999;margin-right:30px;display:table-cell;width:150px;} </style> </head> <body> <div id="FileBrowser"><h5>'+httpP+'</h5>';
                             if(httpP!='/')
-                                txt += '<a href="/st'+path.dirname(httppath).replace(/\\/g,'/')+'">../</a>\n';
+                                txt += '<a href="'+path.dirname(httppath).replace(/\\/g,'/')+'"><i class="fa fa-reply"></i> Back</a>';
+                            txt += '<ul class="file-list" style="padding: 0">';
                             var fileI = 0;
                             var fileInfos = [];
                             var fsCallback = function(err,stats,filename){
@@ -278,12 +279,25 @@ var Com = {
                                         if(fileInfos[i][0].isDirectory()) fileInfos[i][1] += '/';
                                         var sf = fileInfos[i][1];
                                         var st = fileInfos[i][0].mtime.getHttpTime();
-                                        var ss = fileInfos[i][0].isDirectory()?'-':fileInfos[i][0].size.toString();
-                                        txt += '<a href="/st'+path.join(httppath,sf).replace(/\\/g,'/')+'">'+sf+'</a>'+''.pad(50-sf.len(),' ')+st+''.pad(35-st.len()-ss.length,' ')+ss+'\n'
+                                        var ss = fileInfos[i][0].isDirectory()?'File':fileInfos[i][0].size.toString();
+                                        var ext = fileInfos[i][1].split(".").pop();
+                                        if(fileInfos[i][0].isDirectory()) {
+                                            type = "fa fa-folder-o";
+                                        } else if(/(jpg|png|gif|jpeg)$/i.test(ext)) {
+                                            type= "fa fa-picture-o";
+                                            console.info("jpg")
+                                        } else if (/(mp4|rmvb|mkv|avi|flv)$/i.test(ext)) {
+                                            type= "fa fa-file-video-o";
+                                        } else if (/(mp3|wav|wma|ogg|ape|acc)$/i.test(ext)) {
+                                            type= "fa fa-file-audio-o";
+                                        } else {
+                                            type = "fa fa-file-o";
+                                        };
+                                        txt += '<li><a href="'+path.join(httppath,sf).replace(/\\/g,'/')+'"  class="name" target="_blank"><i class="' + type + '"></i> '+sf+'</a><span class="time">'+st+'</span><span class="size">'+ss+'</span></li>';
                                     }
-                                    txt += '</pre><hr ><h3>Powered by '+conf.ServerName+'</h3></body></html>';
+                                    txt += '</ul> </div> <script src="http://127.0.0.1:3000/js/jquery-2.1.1.js"></script> <script src="http://127.0.0.1:3000/js/bootstrap.min.js"></script> </body> </html>';
                                     var cache = new HttpCache(dirmtime.getTime(),new Buffer(txt));
-                                    Com.cache(response,dirmtime.toUTCString(),'html');
+                                   // Com.cache(response,dirmtime.toUTCString(),'html');//cached
                                     Com.flush(request,response,cache,'html','text/html');
                                     Com.fileCache.put(dirPath+'\\',cache);
                                 }
@@ -364,25 +378,29 @@ var Com = {
 };
 
 /* 对外的接口 */
-module.exports = function(req,res){
-    if(conf.ServerName) res.setHeader('Server',conf.ServerName);
-    var httppath = '/',tureurl = req.url.replace(/\/st/,"");
-    if(tureurl == "")  tureurl = httppath;
-    try{
-        httppath = path.normalize(decodeURI(url.parse(tureurl).pathname.replace(/\.\./g, '')));
-    }
-    catch(err){
-        httppath = path.normalize(url.parse(tureurl).pathname.replace(/\.\./g, ''));
-    }
-    var realpath = path.join(conf.Root, "/" +httppath.split("\\")[1] );
-    var ext = path.extname(realpath);
-    if(ext.search(conf.DynamicExt) != -1){
-        if(typeof dynamicCallBack === 'function')
-            dynamicCallBack(req,res,httppath,realpath);
+var createServer = function(port,dynamicCallBack){
+    if(!port) port = 8080;
+    http.createServer(function(req,res){
+        if(conf.ServerName) res.setHeader('Server',conf.ServerName);
+        var httppath = '/';
+        try{
+            httppath = path.normalize(decodeURI(url.parse(req.url).pathname.replace(/\.\./g, '')));
+        }
+        catch(err){
+            httppath = path.normalize(url.parse(req.url).pathname.replace(/\.\./g, ''));
+        }
+        var realpath = path.join(conf.Root, httppath );
+        var ext = path.extname(realpath);
+        if(ext.search(conf.DynamicExt) != -1){
+            if(typeof dynamicCallBack === 'function')
+                dynamicCallBack(req,res,httppath,realpath);
+            else
+                Com.error(res,500,"<h4>Error : Can't find the dynamic page callback function!</h4>");
+        }
         else
-            Com.error(res,500,"<h4>Error : Can't find the dynamic page callback function!</h4>");
-    }
-    else
-        Com.pathHandle(req,res,realpath,httppath);
-    console.info(realpath);
-}
+            Com.pathHandle(req,res,realpath,httppath);
+    }).listen(port);
+};
+createServer(3030,function(){
+    //console.info("static Server start!")
+})

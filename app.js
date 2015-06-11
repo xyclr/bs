@@ -31,7 +31,7 @@ app.use(multer({
     fileSize: 10000000
   },
   onFileSizeLimit: function(file){
-    //Èç¹û´óÓÚ100M,É¾³ýËü
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½100M,É¾ï¿½ï¿½ï¿½ï¿½
     if(file.size > 100000000) {
       fs.unlink('./' + file.path) // delete the partially written file
     }

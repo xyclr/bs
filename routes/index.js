@@ -4,8 +4,7 @@ var crypto = require('crypto'),
     User = require('../models/user.js'),
     async = require('async'),
     multer  = require('multer'),
-    settings = require('../settings'),
-    stServer = require('../models/stServer');
+    settings = require('../settings');
 
 
 /* 获取Http时间（2012-12-21 19:30形式） */
@@ -125,20 +124,8 @@ module.exports = function (app) {
 
     });
 
-    app.get('/st/', function (req, res) {
-        stServer(req, res);
-    });
-    app.get('/st/:name/', function (req, res) {
-        stServer(req, res);
-    });
-    app.get('/st/:name/:name/', function (req, res) {
-        stServer(req, res);
-    });
-    app.get('/st/:name/:name/:name/', function (req, res) {
-        stServer(req, res);
-    });
-    app.get('/st/:name/:name/:name/:name/', function (req, res) {
-        stServer(req, res);
+    app.get('/st', function (req, res) {
+
     });
 
 
