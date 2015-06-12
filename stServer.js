@@ -260,7 +260,7 @@ var Com = {
                         if(err) Com.error(response,404);
                         else{
                             var httpP = httppath.replace(/\\/g,'/');
-                            var txt = '<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>INSPINIA | Dashboard</title> <link href="http://127.0.0.1:3000/css/bootstrap.min.css" rel="stylesheet"> <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> <link href="http://127.0.0.1:3000/css/animate.css" rel="stylesheet"> <style> h5 {font-size:16px;color:#000;} .file-list li {width:100%;overflow:hidden;font-size:14px;margin:2px 0;display:table;} .file-list li a {display:table-cell;color:#333;width:300px;margin-right:10px;overflow:hidden;word-wrap:normal;white-space:nowrap;text-overflow:ellipsis;} .file-list li a:hover {color:#337ab7;text-decoration:none;}.file-list li span {color:#999;margin-right:30px;display:table-cell;width:150px;} </style> </head> <body> <div id="FileBrowser"><h5>'+httpP+'</h5>';
+                            var txt = '<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>INSPINIA | Dashboard</title> <link href="http://127.0.0.1:3000/css/bootstrap.min.css" rel="stylesheet"> <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> <link href="http://127.0.0.1:3000/css/animate.css" rel="stylesheet"> <style> h5 {font-size:16px;color:#000;} .file-list li {width:100%;overflow:hidden;font-size:14px;margin:2px 0;display:table;} .file-list li a {display:table-cell;color:#333;width:300px;margin-right:10px;overflow:hidden;word-wrap:normal;white-space:nowrap;text-overflow:ellipsis;} .file-list li a:hover {color:#337ab7;text-decoration:none;}.file-list li span {color:#999;margin-right:30px;display:table-cell;width:150px;} </style> </head> <body> <div id="FileBrowser"><h5>Current Path: '+httpP+'</h5>';
                             if(httpP!='/')
                                 txt += '<a href="'+path.dirname(httppath).replace(/\\/g,'/')+'"><i class="fa fa-reply"></i> Back</a>';
                             txt += '<ul class="file-list" style="padding: 0">';
@@ -279,7 +279,7 @@ var Com = {
                                         if(fileInfos[i][0].isDirectory()) fileInfos[i][1] += '/';
                                         var sf = fileInfos[i][1];
                                         var st = fileInfos[i][0].mtime.getHttpTime();
-                                        var ss = fileInfos[i][0].isDirectory()?'File':fileInfos[i][0].size.toString();
+                                        var ss = fileInfos[i][0].isDirectory()?'File':parseInt(fileInfos[i][0].size.toString()/1024) + "kb";
                                         var ext = fileInfos[i][1].split(".").pop();
                                         if(fileInfos[i][0].isDirectory()) {
                                             type = "fa fa-folder-o";
@@ -293,7 +293,7 @@ var Com = {
                                         } else {
                                             type = "fa fa-file-o";
                                         };
-                                        txt += '<li><a href="'+path.join(httppath,sf).replace(/\\/g,'/')+'"  class="name" target="_blank"><i class="' + type + '"></i> '+sf+'</a><span class="time">'+st+'</span><span class="size">'+ss+'</span></li>';
+                                        txt += '<li><a href="'+path.join(httppath,sf).replace(/\\/g,'/')+'"  class="name"' + (!fileInfos[i][0].isDirectory() && "target=_blank") +'><i class="' + type + '"></i> '+sf+'</a><span class="time">'+st+'</span><span class="size">'+ss+'</span></li>';
                                     }
                                     txt += '</ul> </div> <script src="http://127.0.0.1:3000/js/jquery-2.1.1.js"></script> <script src="http://127.0.0.1:3000/js/bootstrap.min.js"></script> </body> </html>';
                                     var cache = new HttpCache(dirmtime.getTime(),new Buffer(txt));

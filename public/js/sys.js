@@ -4,6 +4,15 @@ var Sys = {
         this.addItem();
         this.updateItem();
         this.removeItem();
+        this.event();
+    },
+
+    event : function(){
+        /*$("#sys-box").delegate(".btn-upload","click",function(){
+            $('#fileBrower').on('show.bs.modal', function (e) {
+                return false;
+            });
+        })*/
     },
 
     updateItem : function(){
@@ -16,7 +25,6 @@ var Sys = {
                     Sys.showTip("succ","保存成功!","sys-box");
                 });
             },1000,true)();
-
         })
     },
 
@@ -50,10 +58,10 @@ var Sys = {
                 '<div class="input-group" data-type="'+ data[3] +'">'+
                 '<input type="text" class="form-control" name="'+ data[1] +'"  value="'+ data[2] +'">';
 
-            if(data[3] == "file") html += '<span class="input-group-btn"> <button class="btn btn-default del-item" >上传</button> </span>' ;
+            if(data[3] == "file") html += '<span class="input-group-btn"> <a class="btn btn-default btn-upload"  data-toggle="modal" data-target="#fileUpload">上传</a> </span>' ;
             html += '<span class="input-group-btn"> <span class="btn btn-default del-item" >删除</span> </span></div></div>'
-            $(html).insertBefore(".form-actions")
-            $("#addItemModal").modal("hide")
+            $(html).insertBefore(".form-actions");
+            $("#addItemModal").modal("hide");
         })
     },
 
@@ -67,16 +75,11 @@ var Sys = {
     },
 
     showTip : function(type, str,target){
-        var tpl = ""
         if(type == "succ") {
-            tpl =  '<div class="alert alert-success" role="alert">' + str +'</div>'
+            toastr.success(str);
         } else if (type == "warning") {
-            tpl = '<div class="alert alert-warning" role="alert">' + str + '</div>'
+            toastr.error(str);
         };
-        $(tpl).insertBefore("#" + target);
-        setTimeout(function(){
-            $("div[role=alert]").remove();
-        },2000)
     }
 };
 

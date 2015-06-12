@@ -205,7 +205,7 @@
                                         <% } else { %>
                                         <input type="text" class="form-control" name="<%= item[0] %>" value="<%= item[2] %>">
                          <span class="input-group-btn">
-                          <button class="btn btn-default del-item">上传</button>
+                          <button class="btn btn-default btn-upload">上传</button>
                         </span>
                                         <% } %>
                                         <span class="input-group-btn">
@@ -286,6 +286,33 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal inmodal fade" id="fileBrower" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">File Browser</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="http://127.0.0.1:3030" frameborder="0" style="border:none;overflow-y:auto;height:200px;width;100%;"></iframe>
+                <div class="form-group">
+                    <label>upload path</label>
+                    <select  name="src" class="form-control">
+                        <option value="images" selected>images</option>
+                        <option value="video">video</option>
+                        <option value="audio">audio</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-primary" id="file_upload" value="Upload"/>
             </div>
         </div>
     </div>
