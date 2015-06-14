@@ -3,6 +3,6 @@ module.exports = {
   db: 'bs',
   host: 'localhost',
   staticSever : './public',
-  uploadPath : "./public/uploads/",
+  uploadPath : "./public",
   stServer : "localhost:8080"
 }; 

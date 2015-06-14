@@ -124,22 +124,6 @@ module.exports = function (app) {
 
     });
 
-    app.get('/st', function (req, res) {
-
-    });
-
-
-
-    app.get('/upload', function (req, res) {
-        res.render('upload', {
-            title: 'upload',
-            user: req.session.user,
-            success: req.flash('success').toString(),
-            error: req.flash('error').toString()
-        });
-    });
-
-
 
     app.post('/upload',function(req, res) {
         var  subpath = req.params.name;
@@ -151,16 +135,15 @@ module.exports = function (app) {
         var realpath = settings.uploadPath + req.body.src;
         var tmp_path = obj.file.path;
         var new_path =  realpath + "/" +obj.file.name;
-        // console.log("原路径："+tmp_path);
-        //console.log("新路径："+new_path);
+        console.log("原路径："+tmp_path);
+        console.log("新路径："+new_path);
         fs.move(tmp_path, new_path, function (err) {
-            var scriptStr = '<script>parent.submitCb("success","upload success!",'+ '"'+req.body.src+'"'+')</script>';
+            var scriptStr = '<script>parent.parent.submitCb("success","upload success!",'+ '"'+req.body.src+'"'+');parent.refreshIframe();</script>';
             if (err)  {
-                res.write('<script>parent.submitCb("error",err)</script>')
+                res.write('<script>parent.parent.submitCb("error",err)</script>')
                 return console.error(err);
             } else {
                 console.log("success!");
-
                 res.write(scriptStr);
             };
             res.end("")

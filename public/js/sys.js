@@ -8,11 +8,13 @@ var Sys = {
     },
 
     event : function(){
-        /*$("#sys-box").delegate(".btn-upload","click",function(){
-            $('#fileBrower').on('show.bs.modal', function (e) {
+        $("#sys-box").delegate(".btn-upload","click",function(){
+            $("#fileBrower").modal();
+            return false;
+           /* $('#fileBrower').on('show.bs.modal', function (e) {
                 return false;
-            });
-        })*/
+            });*/
+        })
     },
 
     updateItem : function(){
