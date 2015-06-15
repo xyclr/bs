@@ -10,10 +10,8 @@ var Sys = {
     event : function(){
         $("#sys-box").delegate(".btn-upload","click",function(){
             $("#fileBrower").modal();
+            $(this).parent().prev().addClass("cur");
             return false;
-           /* $('#fileBrower').on('show.bs.modal', function (e) {
-                return false;
-            });*/
         })
     },
 
@@ -82,6 +80,11 @@ var Sys = {
         } else if (type == "warning") {
             toastr.error(str);
         };
+    },
+
+    fileSelectCb : function(path){
+       $("#sys-box").find(".cur").val(path);
+        $("#fileBrower").modal("hide");
     }
 };
 

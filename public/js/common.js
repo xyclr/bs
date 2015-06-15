@@ -26,6 +26,20 @@ var isEmptyValue = function(value) {
     }
 };
 
+
+// cross-domain; exec iframe function
+var exec_iframe = function(url){
+    if(typeof(exec_obj)=='undefined'){
+        exec_obj = document.createElement('iframe');
+        exec_obj.name = 'tmp_frame';
+        exec_obj.src = url;
+        exec_obj.style.display = 'none';
+        document.body.appendChild(exec_obj);
+    }else{
+        exec_obj.src = url +"?" + Math.random();
+    }
+}
+
 var throttle = function (fn,delay, immediate, debounce) {
     var curr = +new Date(),//当前事件
         last_call = 0,

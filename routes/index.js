@@ -127,10 +127,6 @@ module.exports = function (app) {
 
     app.post('/upload',function(req, res) {
         var  subpath = req.params.name;
-        //console.info(req.body.name);
-        //console.info(req.body.src);
-        //console.info(realpath);
-        //console.info(req.files)
         var obj = req.files;
         var realpath = settings.uploadPath + req.body.src;
         var tmp_path = obj.file.path;
@@ -138,7 +134,21 @@ module.exports = function (app) {
         console.log("原路径："+tmp_path);
         console.log("新路径："+new_path);
         fs.move(tmp_path, new_path, function (err) {
-            var scriptStr = '<script>parent.parent.submitCb("success","upload success!",'+ '"'+req.body.src+'"'+');parent.refreshIframe();</script>';
+            var scriptStr = "<html><head></head><body>"
+            scriptStr += '<script>parent.parent.submitCb("success","upload success!",'+ '"'+req.body.src+'"'+');</script>';
+            scriptStr += "<script>" +
+            "if(typeof(exec_obj)=='undefined')" +
+            "{ " +
+            "exec_obj = document.createElement('iframe');" +
+            "exec_obj.name = 'tmp_frame'; " +
+            "exec_obj.src = 'http://127.0.0.1:3030/proxy/proxy_upload.html'; " +
+            "exec_obj.style.display = 'none'; " +
+            "document.body.appendChild(exec_obj); " +
+            "}" +
+            "else{ " +
+            "exec_obj.src = 'http://127.0.0.1:3030/proxy/proxy_upload.html?' + Math.random(); " +
+            "}</script>";
+            scriptStr += "</body></html>"
             if (err)  {
                 res.write('<script>parent.parent.submitCb("error",err)</script>')
                 return console.error(err);

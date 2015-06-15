@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>proxy_upload</title>
+</head>
+<body>
+<script type="text/javascript">
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    };
+    parent.parent.Sys.fileSelectCb(GetQueryString("path")); // execute main function
+</script>
+</body>
+</html>
