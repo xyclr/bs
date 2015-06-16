@@ -189,7 +189,7 @@
                 <div class="col-lg-9 animated fadeInRight">
                     <div class="row">
                         <div class="col-lg-12">
-                            <iframe id="file" name="file" src="http://127.0.0.1:3030/" frameborder="0"   style="border:none;overflow-y:auto;height:500px;width:100%;backgrounnd-color:transparent"></iframe>
+                            <iframe id="file" name="file" src="http://127.0.0.1:3030/uploads" frameborder="0"   style="border:none;overflow-y:auto;height:500px;width:100%;backgrounnd-color:transparent"></iframe>
                         </div>
                     </div>
                 </div>
@@ -199,15 +199,12 @@
 </div>
 
 <script type="text/javascript">
-    //upload callback
-    function submitCb(type,msg,path){
-        var alert =  $("#fileUploadForm .modal-body");
-        if(type ==  "eror") {
-            toastr.error('Upload Fail!');
-        }
-        else {
-            toastr.success('Upload Success!');
-        };
-    };
+
+
+    $(".folder-list a").click(function(){
+        var path = $.trim($(this).text());
+        $("#file").attr({"src":"http://127.0.0.1:3030/uploads/" +path});
+        return false;
+    });
 </script>
 <%- include footer %>

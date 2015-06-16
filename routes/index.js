@@ -5,6 +5,7 @@ var crypto = require('crypto'),
     async = require('async'),
     multer  = require('multer'),
     settings = require('../settings');
+var url = require('url');
 
 
 /* 获取Http时间（2012-12-21 19:30形式） */
@@ -64,71 +65,11 @@ module.exports = function (app) {
             });
         }
     });
-    app.get('/file/:name', function (req, res){
-        var  filename = req.params.name;
-        var path = settings.uploadPath + '/' + filename,fileInfo = {};
-        fs.readdir(path, function(err, files){
-            //err 为错误 , files 文件名列表包含文件夹与文件
-            if(err){
-                console.log('error:\n' + err);
-                return;
-            };
-            files.forEach(function(file){
-
-                fs.stat(path + '/' + file, function(err, stat){
-                    //console.info(stat);
-                    //创建一个对象保存信息
-                    var obj = new Object();
-                    obj.size = (stat.size/1024).toFixed(2) +"/kb";//文件大小，以字节为单位
-                    obj.name = file;//文件名
-                    obj.path = path+'/'+file; //文件绝对路径
-                    obj.ext = (file + "").split(".").pop();
-                    obj.type = "file";
-                    obj.time = stat.mtime.getHttpTime();
-
-                    if(err){console.log(err); return;}
-
-                    if (obj.ext && obj.ext.search(/gif|jpg|png|ico/ig)!=-1) {
-                        obj.type = "img"
-                    }
-                    console.info(obj)
-                    fileInfo[obj.name] = obj;
-                });
-            });
-
-            var Timer = true;
-            setInterval(function(){
-                if(count(fileInfo)  == files.length && Timer) {
-                    // res.writeHead(200, {'Content-type' : 'text/html'});
-                    res.json({"fileInfo": fileInfo});
-                    res.end('');
-                    Timer = false;
-                }
-
-            },1000);
-        });
-
-        function count(o){
-            var t = typeof o;
-            if(t == 'string'){
-                return o.length;
-            }else if(t == 'object'){
-                var n = 0;
-                for(var i in o){
-                    n++;
-                }
-                return n;
-            }
-            return false;
-        };
-
-    });
-
 
     app.post('/upload',function(req, res) {
         var  subpath = req.params.name;
         var obj = req.files;
-        var realpath = settings.uploadPath + req.body.src;
+        var realpath = settings.staticSever + req.body.src;
         var tmp_path = obj.file.path;
         var new_path =  realpath + "/" +obj.file.name;
         console.log("原路径："+tmp_path);
@@ -141,12 +82,12 @@ module.exports = function (app) {
             "{ " +
             "exec_obj = document.createElement('iframe');" +
             "exec_obj.name = 'tmp_frame'; " +
-            "exec_obj.src = 'http://127.0.0.1:3030/proxy/proxy_upload.html'; " +
+            "exec_obj.src = '"+ settings.stServer +"/proxy/proxy_upload.html'; " +
             "exec_obj.style.display = 'none'; " +
             "document.body.appendChild(exec_obj); " +
             "}" +
             "else{ " +
-            "exec_obj.src = 'http://127.0.0.1:3030/proxy/proxy_upload.html?' + Math.random(); " +
+            "exec_obj.src = '"+ settings.stServer +"/proxy/proxy_upload.html?' + Math.random(); " +
             "}</script>";
             scriptStr += "</body></html>"
             if (err)  {
@@ -162,13 +103,19 @@ module.exports = function (app) {
     });
 
     app.post('/fileDel',function(req, res) {
-        req.body.delList.forEach(function (name) {
-            fs.unlink(settings.uploadPath + req.body.delFilePath + "/" + name, function (err) {
+        var arg = url.parse(req.url, true).query;
+        var path = arg.path.replace(/\|/ig,"/");
+        var list = arg.list.split("|");
+        console.info(path);
+        console.info(list);
+        list.forEach(function (name) {
+            console.info(settings.uploadPath  + path +"/" +name);
+            fs.unlink(settings.staticSever  + path +"/" +name, function (err) {
                 if (err) {
                     throw err;
                 }
                 console.log('文件:' + name + '删除成功！');
-                res.end("over")
+                res.end("over");
             });
         });
     });

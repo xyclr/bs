@@ -1,3 +1,8 @@
+var settings = {
+    stServer : "http://127.0.0.1:3030",
+    Server : "http://127.0.0.1:3000"
+}
+
 var extendBootstrap = (function(){
     $(".dropdown").each(function(item){
         var _this = $(this);
@@ -36,9 +41,34 @@ var exec_iframe = function(url){
         exec_obj.style.display = 'none';
         document.body.appendChild(exec_obj);
     }else{
-        exec_obj.src = url +"?" + Math.random();
+        exec_obj.src = url/* +"?" + Math.random()*/;
     }
-}
+};
+
+//upload callback
+function submitCb(type,msg,path){
+    var alert =  $("#fileUploadForm .modal-body");
+    if(type ==  "eror") {
+        toastr.error('Upload Fail!');
+    }
+    else {
+        toastr.success('Upload Success!');
+    };
+};
+
+function fileDelCb(url){
+    $.ajax({
+        url: settings.Server + "/fileDel?" + url ,
+        type: 'POST',
+        success: function(data){
+            toastr.success('Del Success!');
+        },
+        error: function(error){
+            toastr.error('Del Error!');
+        }
+    })
+    return false;
+};
 
 var throttle = function (fn,delay, immediate, debounce) {
     var curr = +new Date(),//当前事件

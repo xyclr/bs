@@ -8,6 +8,7 @@ var Sys = {
     },
 
     event : function(){
+        //上传图片
         $("#sys-box").delegate(".btn-upload","click",function(){
             $("#fileBrower").modal();
             $(this).parent().prev().addClass("cur");
@@ -15,6 +16,7 @@ var Sys = {
         })
     },
 
+    //更新item
     updateItem : function(){
         var saveSys = $("#saveSys");
         saveSys.click(function(){
@@ -28,6 +30,7 @@ var Sys = {
         })
     },
 
+    //删除item
     removeItem : function() {
         //绑定删除元素事件
         $("#sys-box").delegate('.del-item', 'click', function() {
@@ -58,7 +61,7 @@ var Sys = {
                 '<div class="input-group" data-type="'+ data[3] +'">'+
                 '<input type="text" class="form-control" name="'+ data[1] +'"  value="'+ data[2] +'">';
 
-            if(data[3] == "file") html += '<span class="input-group-btn"> <a class="btn btn-default btn-upload"  data-toggle="modal" data-target="#fileUpload">上传</a> </span>' ;
+            if(data[3] == "file") html += '<span class="input-group-btn"> <a class="btn btn-default btn-upload"  data-toggle="modal" data-target="#fileUpload">选择</a> </span>' ;
             html += '<span class="input-group-btn"> <span class="btn btn-default del-item" >删除</span> </span></div></div>'
             $(html).insertBefore(".form-actions");
             $("#addItemModal").modal("hide");
@@ -81,6 +84,7 @@ var Sys = {
             toastr.error(str);
         };
     },
+
 
     fileSelectCb : function(path){
        $("#sys-box").find(".cur").val(path);

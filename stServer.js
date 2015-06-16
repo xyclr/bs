@@ -5,6 +5,8 @@
  * Time: 下午4:59
  * To change this template use File | Settings | File Templates.
  */
+var settings = require('./settings');
+
 var conf = {
     Root : 'public', //文件的根路径
     IndexEnable : true, //开启目录功能？
@@ -260,9 +262,12 @@ var Com = {
                         if(err) Com.error(response,404);
                         else{
                             var httpP = httppath.replace(/\\/g,'/');
-                            var txt = '<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>INSPINIA | Dashboard</title> <link href="http://127.0.0.1:3000/css/bootstrap.min.css" rel="stylesheet"> <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> <link href="http://127.0.0.1:3000/css/animate.css" rel="stylesheet"> <link href="http://127.0.0.1:3000/css/style.css" rel="stylesheet"> <style> body { background: #fff } h5 { font-size: 16px; color: #000; } .file-list li { width: 100%; overflow: hidden; font-size: 14px; margin: 2px 0; display: table; } .file-list li a { display: block; color: #333; width: 250px; margin-right: 50px; overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; } .file-list li a:hover { color: #337ab7; text-decoration: none; } .file-list li span { color: #999; margin-right: 30px; display: table-cell; width: 150px; } .file-list li span.cke { width: 20px;padding:0 10px 0 20px; } .file-list li span.cke input { vertical-align: -2px; } .btn-box { color: #000; visibility: hidden; } .file-list li:hover,.file-list.hover{ background:#eee; } .file-list li:hover .btn-box,.file-list.hover .btn-box { visibility: visible; } .btn-box { padding-left:20px; } .btn-box span { cursor: pointer; } .btn-box span i { margin-right:5px; } .btn-box span:hover { color: #337ab7; } </style> </head> <body> <!--list--> <div id="FileBrowser"> <div class="ibox-title"> <div class="row"> <div class="col-lg-3"> <h5>root<span id="filepath">'+httpP+'';
-                            //if(httpP!='/')
+                            var txt = '<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>INSPINIA | Dashboard</title> <link href="http://127.0.0.1:3000/css/bootstrap.min.css" rel="stylesheet"> <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> <link href="http://127.0.0.1:3000/css/animate.css" rel="stylesheet"> <link href="http://127.0.0.1:3000/css/style.css" rel="stylesheet"> <style> body { background: #fff } h5 { font-size: 16px; color: #000; } .file-list li { width: 100%; overflow: hidden; font-size: 14px; margin: 2px 0; display: table; } .file-list li a { display: block; color: #333; width: 250px; margin-right: 50px; overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; } .file-list li a:hover { color: #337ab7; text-decoration: none; } .file-list li span { color: #999; margin-right: 30px; display: table-cell; width: 150px; } .file-list li span.cke { width: 20px;padding:0 10px 0 20px; } .file-list li span.cke input { vertical-align: -2px; } .btn-box { color: #000; visibility: hidden; } .file-list li:hover,.file-list.hover{ background:#eee; } .file-list li:hover .btn-box,.file-list.hover .btn-box { visibility: visible; } .file-list li.isfile .btn-box {visibility: hidden!important; }.btn-box { padding-left:20px; } .btn-box span { cursor: pointer; } .btn-box span i { margin-right:5px; } .btn-box span:hover { color: #337ab7; } </style> </head> <body> <!--list--> <div id="FileBrowser"> <div class="ibox-title"> <div class="row"> <div class="col-lg-3"> <h5>root<span id="filepath">'+httpP+'';
+                            if(httpP =='/' || httpP =='/uploads' || httpP =='/uploads/') {
+                                txt += '</span></h5></div> <div class="col-lg-9"> <div class="ibox-tools-btn"> <a class="btn btn-primary" href="javascript:void(0)"> <i class="fa fa-reply"></i> Back </a> ';
+                            }else {
                                 txt += '</span></h5></div> <div class="col-lg-9"> <div class="ibox-tools-btn"> <a class="btn btn-primary" href="'+path.dirname(httppath).replace(/\\/g,'/')+'"> <i class="fa fa-reply"></i> Back </a> ';
+                            }
 
                             txt += '<a class="btn btn-primary" id="refresh"> <i class="fa fa fa-refresh"></i> Refresh</a> <a class="btn btn-primary" data-toggle="modal" data-target="#fileUpload"> <i class="fa fa-upload"></i> Upload File </a> <a class="btn btn-primary" id="btn-select-all"> Select All </a> <a class="btn btn-primary" id="btn-select-cancel"> Cancel Select </a> <a class="btn btn-warning" id="btn-file-del"> <i class="fa fa-trash-o"></i> Del Select </a> </div> </div> </div> </div> <div class="ibox-content" style="overflow: hidden" path="uploads"> <ul class="file-list" style="padding:0;">';
                             var fileI = 0;
@@ -280,8 +285,9 @@ var Com = {
                                         if(fileInfos[i][0].isDirectory()) fileInfos[i][1] += '/';
                                         var sf = fileInfos[i][1];
                                         var st = fileInfos[i][0].mtime.getHttpTime();
-                                        var ss = fileInfos[i][0].isDirectory()?'File':parseInt(fileInfos[i][0].size.toString()/1024) + "kb";
-                                        var ext = fileInfos[i][1].split(".").pop();ss
+                                        var isFile = fileInfos[i][0].isDirectory();
+                                        var ss = isFile?'File':parseInt(fileInfos[i][0].size.toString()/1024) + "kb";
+                                        var ext = fileInfos[i][1].split(".").pop();
                                         if(fileInfos[i][0].isDirectory()) {
                                             type = "fa fa-folder-o";
                                         } else if(/(jpg|png|gif|jpeg)$/i.test(ext)) {
@@ -294,7 +300,12 @@ var Com = {
                                         } else {
                                             type = "fa fa-file-o";
                                         };
-                                        txt += '<li path="'+ "http://127.0.0.1:3030" + path.join(httppath,sf).replace(/\\/g,'/')+'"><span class="cke"><input type="checkbox"/></span><a href="'+path.join(httppath,sf).replace(/\\/g,'/')+'"  class="name"' + (!fileInfos[i][0].isDirectory() && "target=_blank") +'><i class="' + type + '"></i> '+sf+'</a><span class="time">'+st+'</span><span class="size">'+ss+'</span><span class="btn-box"><span class="btn-view"><i class="fa fa-eye"></i>view</span><span class="btn-select"><i class="fa fa-check-circle"></i>select</span></span></li>';
+                                        if(isFile) {
+                                            txt += '<li path="'+ settings.stServer + path.join(httppath,sf).replace(/\\/g,'/')+'" class="isfile"><span class="cke"><input type="checkbox" disabled /></span><a href="'+path.join(httppath,sf).replace(/\\/g,'/')+'"  class="name"><i class="' + type + '"></i> '+sf+'</a><span class="time">'+st+'</span><span class="size">'+ss+'</span><span class="btn-box"><span class="btn-view"><i class="fa fa-eye"></i>view</span><span class="btn-select"><i class="fa fa-check-circle"></i>select</span></span></li>';
+                                        } else {
+                                            txt += '<li path="'+ settings.stServer + path.join(httppath,sf).replace(/\\/g,'/')+'" ><span class="cke"><input type="checkbox" name="checkbox"/></span><a href="'+path.join(httppath,sf).replace(/\\/g,'/')+'"  class="name" target="_blank"><i class="' + type + '"></i> '+sf+'</a><span class="time">'+st+'</span><span class="size">'+ss+'</span><span class="btn-box"><span class="btn-view"><i class="fa fa-eye"></i>view</span><span class="btn-select"><i class="fa fa-check-circle"></i>select</span></span></li>';
+                                        }
+
                                     }
                                     txt += '</ul> </div> </div>';
                                     //model
