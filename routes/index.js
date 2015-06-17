@@ -106,8 +106,6 @@ module.exports = function (app) {
         var arg = url.parse(req.url, true).query;
         var path = arg.path.replace(/\|/ig,"/");
         var list = arg.list.split("|");
-        console.info(path);
-        console.info(list);
         list.forEach(function (name) {
             console.info(settings.uploadPath  + path +"/" +name);
             fs.unlink(settings.staticSever  + path +"/" +name, function (err) {
@@ -125,7 +123,7 @@ module.exports = function (app) {
 
     app.get('/sys', checkLogin);
     app.get('/sys', function (req, res) {
-        Sys.get("settings1", function (err, sys) {
+        Sys.get("settings", function (err, sys) {
             if (err) {
                 sys = [];
             }
@@ -139,7 +137,7 @@ module.exports = function (app) {
                 });
 
 
-                var sys = new Sys("settings1",Sys.initCfg);
+                var sys = new Sys("settings",Sys.initCfg);
 
                 sys.save(function (err) {
                     if (err) {
@@ -164,7 +162,7 @@ module.exports = function (app) {
 
     app.post('/sys', checkLogin);
     app.post('/sys', function (req, res) {
-        Sys.update("settings1",req.body.settingArr, function (err) {
+        Sys.update("settings",req.body.settingArr, function (err) {
             if (err) {
                 req.flash('error', err);
                 res.redirect('/sys');

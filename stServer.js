@@ -259,17 +259,29 @@ var Com = {
                 if(dirmtime){
                     var dirPath = path.dirname(realpath);
                     fs.readdir(dirPath,function(err,files){
-                        if(err) Com.error(response,404);
-                        else{
+                        if(err) {
+                            Com.error(response,404)
+                        } else
+                        {
                             var httpP = httppath.replace(/\\/g,'/');
                             var txt = '<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>INSPINIA | Dashboard</title> <link href="http://127.0.0.1:3000/css/bootstrap.min.css" rel="stylesheet"> <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> <link href="http://127.0.0.1:3000/css/animate.css" rel="stylesheet"> <link href="http://127.0.0.1:3000/css/style.css" rel="stylesheet"> <style> body { background: #fff } h5 { font-size: 16px; color: #000; } .file-list li { width: 100%; overflow: hidden; font-size: 14px; margin: 2px 0; display: table; } .file-list li a { display: block; color: #333; width: 250px; margin-right: 50px; overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; } .file-list li a:hover { color: #337ab7; text-decoration: none; } .file-list li span { color: #999; margin-right: 30px; display: table-cell; width: 150px; } .file-list li span.cke { width: 20px;padding:0 10px 0 20px; } .file-list li span.cke input { vertical-align: -2px; } .btn-box { color: #000; visibility: hidden; } .file-list li:hover,.file-list.hover{ background:#eee; } .file-list li:hover .btn-box,.file-list.hover .btn-box { visibility: visible; } .file-list li.isfile .btn-box {visibility: hidden!important; }.btn-box { padding-left:20px; } .btn-box span { cursor: pointer; } .btn-box span i { margin-right:5px; } .btn-box span:hover { color: #337ab7; } </style> </head> <body> <!--list--> <div id="FileBrowser"> <div class="ibox-title"> <div class="row"> <div class="col-lg-3"> <h5>root<span id="filepath">'+httpP+'';
                             if(httpP =='/' || httpP =='/uploads' || httpP =='/uploads/') {
-                                txt += '</span></h5></div> <div class="col-lg-9"> <div class="ibox-tools-btn"> <a class="btn btn-primary" href="javascript:void(0)"> <i class="fa fa-reply"></i> Back </a> ';
+                                txt += '</span></h5></div> <div class="col-lg-9"> <div class="ibox-tools-btn"> <a class="btn btn-primary btn-xs" href="javascript:void(0)"> <i class="fa fa-reply"></i> Back </a> ';
                             }else {
-                                txt += '</span></h5></div> <div class="col-lg-9"> <div class="ibox-tools-btn"> <a class="btn btn-primary" href="'+path.dirname(httppath).replace(/\\/g,'/')+'"> <i class="fa fa-reply"></i> Back </a> ';
+                                txt += '</span></h5></div> <div class="col-lg-9"> <div class="ibox-tools-btn"> <a class="btn btn-primary btn-xs" href="'+path.dirname(httppath).replace(/\\/g,'/')+'"> <i class="fa fa-reply"></i> Back </a> ';
                             }
+                            txt += '<a class="btn btn-primary btn-xs" id="refresh"> <i class="fa fa fa-refresh btn-xs"></i> Refresh</a> <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#fileUpload"> <i class="fa fa-upload"></i> Upload File </a> <a class="btn btn-primary btn-xs" id="btn-select-all"> Select All </a> <a class="btn btn-primary btn-xs" id="btn-select-cancel"> Cancel Select </a> <a class="btn btn-warning btn-xs" id="btn-file-del"> <i class="fa fa-trash-o"></i> Del Select </a> </div> </div> </div> </div> <div class="ibox-content" style="overflow: hidden" path="uploads"> <ul class="file-list" style="padding:0;">';
 
-                            txt += '<a class="btn btn-primary" id="refresh"> <i class="fa fa fa-refresh"></i> Refresh</a> <a class="btn btn-primary" data-toggle="modal" data-target="#fileUpload"> <i class="fa fa-upload"></i> Upload File </a> <a class="btn btn-primary" id="btn-select-all"> Select All </a> <a class="btn btn-primary" id="btn-select-cancel"> Cancel Select </a> <a class="btn btn-warning" id="btn-file-del"> <i class="fa fa-trash-o"></i> Del Select </a> </div> </div> </div> </div> <div class="ibox-content" style="overflow: hidden" path="uploads"> <ul class="file-list" style="padding:0;">';
+                            if (files.length == 0) {
+                                txt += '</ul> <p style="text-align:center;padding: 100px 0;"><i class="fa fa-frown-o" style=" font-size: 50px; vertical-align: middle; "></i> 木有文件啊！</p>';
+                                txt += '</div> </div>';
+                                txt += '<div class="modal  fade  " id="fileUpload" tabindex="-1" role="dialog" aria-hidden="true"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> <h4 class="modal-title">File Upload</h4> </div> <form role="form" action="http://127.0.0.1:3000/upload" method="post" id="fileUploadForm" enctype="multipart/form-data" target="hidden_frame"><input type="hidden" name="path" /> <div class="modal-body"> </div> <div class="modal-footer"> <button type="button" class="btn btn-white" data-dismiss="modal">Close</button> <input type="submit" class="btn btn-primary" id="file_upload" value="Upload"/> </div> <iframe name="hidden_frame" id="hidden_frame" style="display:none"></iframe>  </form> </div> </div> </div><script src="http://127.0.0.1:3000/js/jquery-2.1.1.js"></script> <script src="http://127.0.0.1:3000/js/bootstrap.min.js"></script> <script src="http://127.0.0.1:3030/js/common.js"></script><script src="http://127.0.0.1:3030/js/file.js"></script></body></html>';
+                                var cache = new HttpCache(dirmtime.getTime(),new Buffer(txt));
+                                // Com.cache(response,dirmtime.toUTCString(),'html');//cached
+                                Com.flush(request,response,cache,'html','text/html');
+                                Com.fileCache.put(dirPath+'\\',cache);
+                                return;
+                            }
                             var fileI = 0;
                             var fileInfos = [];
                             var fsCallback = function(err,stats,filename){
