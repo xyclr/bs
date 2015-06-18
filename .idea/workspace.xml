@@ -72,15 +72,15 @@
       <file leaf-file-name="stServer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stServer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6442308" vertical-offset="5802" max-vertical-offset="8303">
-              <caret line="323" column="1005" selection-start-line="323" selection-start-column="1005" selection-end-line="323" selection-end-column="1005" />
+            <state vertical-scroll-proportion="0.3326923" vertical-offset="5964" max-vertical-offset="8303">
+              <caret line="323" column="1121" selection-start-line="323" selection-start-column="1121" selection-end-line="323" selection-end-column="1121" />
               <folding>
-                <marker date="1434614492281" expanded="true" signature="11662:11678" placeholder="..." />
-                <marker date="1434614492281" expanded="true" signature="11725:11735" placeholder="..." />
-                <marker date="1434614492281" expanded="true" signature="11850:11885" placeholder="..." />
-                <marker date="1434614492281" expanded="true" signature="11919:11961" placeholder="..." />
-                <marker date="1434614492281" expanded="true" signature="12890:12902" placeholder="..." />
-                <marker date="1434614492281" expanded="true" signature="18019:18031" placeholder="..." />
+                <marker date="1434615791219" expanded="true" signature="11662:11678" placeholder="..." />
+                <marker date="1434615791219" expanded="true" signature="11725:11735" placeholder="..." />
+                <marker date="1434615791219" expanded="true" signature="11850:11885" placeholder="..." />
+                <marker date="1434615791219" expanded="true" signature="11919:11961" placeholder="..." />
+                <marker date="1434615791219" expanded="true" signature="12890:12902" placeholder="..." />
+                <marker date="1434615791219" expanded="true" signature="18011:18023" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -490,15 +490,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stServer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6442308" vertical-offset="5802" max-vertical-offset="8303">
-          <caret line="323" column="1005" selection-start-line="323" selection-start-column="1005" selection-end-line="323" selection-end-column="1005" />
+        <state vertical-scroll-proportion="0.3326923" vertical-offset="5964" max-vertical-offset="8303">
+          <caret line="323" column="1121" selection-start-line="323" selection-start-column="1121" selection-end-line="323" selection-end-column="1121" />
           <folding>
-            <marker date="1434614492281" expanded="true" signature="11662:11678" placeholder="..." />
-            <marker date="1434614492281" expanded="true" signature="11725:11735" placeholder="..." />
-            <marker date="1434614492281" expanded="true" signature="11850:11885" placeholder="..." />
-            <marker date="1434614492281" expanded="true" signature="11919:11961" placeholder="..." />
-            <marker date="1434614492281" expanded="true" signature="12890:12902" placeholder="..." />
-            <marker date="1434614492281" expanded="true" signature="18019:18031" placeholder="..." />
+            <marker date="1434615791219" expanded="true" signature="11662:11678" placeholder="..." />
+            <marker date="1434615791219" expanded="true" signature="11725:11735" placeholder="..." />
+            <marker date="1434615791219" expanded="true" signature="11850:11885" placeholder="..." />
+            <marker date="1434615791219" expanded="true" signature="11919:11961" placeholder="..." />
+            <marker date="1434615791219" expanded="true" signature="12890:12902" placeholder="..." />
+            <marker date="1434615791219" expanded="true" signature="18011:18023" placeholder="..." />
           </folding>
         </state>
       </provider>
