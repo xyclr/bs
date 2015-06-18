@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2ee6b91-b75a-403e-babe-efaf2a5c256d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/common.js" afterPath="$PROJECT_DIR$/public/js/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/file.ejs" afterPath="$PROJECT_DIR$/views/file.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stServer.js" afterPath="$PROJECT_DIR$/stServer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/sys.ejs" afterPath="$PROJECT_DIR$/views/sys.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,15 +72,15 @@
       <file leaf-file-name="stServer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stServer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44230768" vertical-offset="5793" max-vertical-offset="8303">
-              <caret line="317" column="552" selection-start-line="317" selection-start-column="552" selection-end-line="317" selection-end-column="552" />
+            <state vertical-scroll-proportion="0.6442308" vertical-offset="5802" max-vertical-offset="8303">
+              <caret line="323" column="1005" selection-start-line="323" selection-start-column="1005" selection-end-line="323" selection-end-column="1005" />
               <folding>
-                <marker date="1434611524202" expanded="true" signature="11614:11630" placeholder="..." />
-                <marker date="1434611524202" expanded="true" signature="11677:11687" placeholder="..." />
-                <marker date="1434611524202" expanded="true" signature="11802:11837" placeholder="..." />
-                <marker date="1434611524202" expanded="true" signature="11871:11913" placeholder="..." />
-                <marker date="1434611524202" expanded="true" signature="12826:12838" placeholder="..." />
-                <marker date="1434611524202" expanded="true" signature="17907:17919" placeholder="..." />
+                <marker date="1434614492281" expanded="true" signature="11662:11678" placeholder="..." />
+                <marker date="1434614492281" expanded="true" signature="11725:11735" placeholder="..." />
+                <marker date="1434614492281" expanded="true" signature="11850:11885" placeholder="..." />
+                <marker date="1434614492281" expanded="true" signature="11919:11961" placeholder="..." />
+                <marker date="1434614492281" expanded="true" signature="12890:12902" placeholder="..." />
+                <marker date="1434614492281" expanded="true" signature="18019:18031" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -354,7 +349,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -495,15 +490,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stServer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44230768" vertical-offset="5793" max-vertical-offset="8303">
-          <caret line="317" column="552" selection-start-line="317" selection-start-column="552" selection-end-line="317" selection-end-column="552" />
+        <state vertical-scroll-proportion="0.6442308" vertical-offset="5802" max-vertical-offset="8303">
+          <caret line="323" column="1005" selection-start-line="323" selection-start-column="1005" selection-end-line="323" selection-end-column="1005" />
           <folding>
-            <marker date="1434611524202" expanded="true" signature="11614:11630" placeholder="..." />
-            <marker date="1434611524202" expanded="true" signature="11677:11687" placeholder="..." />
-            <marker date="1434611524202" expanded="true" signature="11802:11837" placeholder="..." />
-            <marker date="1434611524202" expanded="true" signature="11871:11913" placeholder="..." />
-            <marker date="1434611524202" expanded="true" signature="12826:12838" placeholder="..." />
-            <marker date="1434611524202" expanded="true" signature="17907:17919" placeholder="..." />
+            <marker date="1434614492281" expanded="true" signature="11662:11678" placeholder="..." />
+            <marker date="1434614492281" expanded="true" signature="11725:11735" placeholder="..." />
+            <marker date="1434614492281" expanded="true" signature="11850:11885" placeholder="..." />
+            <marker date="1434614492281" expanded="true" signature="11919:11961" placeholder="..." />
+            <marker date="1434614492281" expanded="true" signature="12890:12902" placeholder="..." />
+            <marker date="1434614492281" expanded="true" signature="18019:18031" placeholder="..." />
           </folding>
         </state>
       </provider>
