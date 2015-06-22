@@ -33,15 +33,15 @@ body { height:100%; font-size:1rem; padding:0; margin:0; background-color:#eee; 
 .floor .hd {overflow: hidden;border-bottom: solid 1px #ddd;padding:5px 10px;font-size:12px;}
 .floor .hd h3 {float:left;font-size:14px;color:#00b38a;}
 .floor .hd a {float:right;}
-.floor .item {position: relative;padding:10px;}
+.floor .item {position: relative;padding:2%;}
 .floor .thumb {width:100%;}
 .floor .thumb img {width:100%;}
-.floor .p-name {position: absolute; left: 20px; bottom: 55px; background-color: rgba(0,0,0,0.5); display: block; border-radius: 5px; padding: 5px 10px; color: #fff;}
-.floor .info {margin-left:5px;font-size:12px;overflow: hidden}
+.floor .p-name {position: absolute; bottom: 55px; background-color: rgba(0,0,0,0.5); display: block; border-radius: 5px; padding:5px 2%; color: #fff;width:92%;line-height:12px;height:16px;overflow: hidden}
+.floor .info {font-size:12px;overflow: hidden}
 .floor .logo {width:30px;height:30px;border-radius:30px;border:10px solid #fff;position: absolute;left:20px;bottom:0;}
 .floor .p-detail {padding-left:70px;}
 .floor .btn-fav,.floor .btn-faved {width:30px;height:30px;display: block;background:rgba(0,0,0,0.2) url("../images/ico_fav.png") no-repeat;background-size:100% 100%;position: absolute;top:20px;right:20px;border-radius:5px;}
-.floor .btn-faved {background-image:url(); }
+.floor .btn-faved { }
 
 .ad {width:100%;height:50px;background:#ddd;margin-bottom:10px;line-height:50px;font-size:20px;text-align: center;color:#fff;}
 
@@ -93,7 +93,11 @@ footer.cart .btn-addtocart { border-color:#faa500; background-color:#faa500; col
 .usr .item {width:100%;background:#fff;padding:5px 10px;margin:20px 0;overflow: hidden;font-size:12px;position: relative;}
 .usr .profile {padding:10px;height:50px;line-height:50px;margin-top:50px;}
 .usr .profile .name {float:left;margin-left:10px;}
-.usr  .more {position: absolute;top:8px;right:30px;background:url(../images/ico_back.png) no-repeat 0 0;width:10px;height:10px;display: block;background-size: 100% 100%;transform:rotate(180deg);}
+.usr  .more {position: absolute;top:8px;right:30px;background:url(../images/ico_back.png) no-repeat 0 0;width:10px;height:10px;display: block;background-size: 100% 100%;transform:rotate(180deg);
+    -ms-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    -o-transform:rotate(180deg); }
 .usr .profile .img-box {float:left;}
 .usr .profile .more {top:30px;}
 .usr .profile .img-box img {width:50px;height:50px;border-radius: 50px;}
