@@ -36,10 +36,10 @@ body { height:100%; font-size:1rem; padding:0; margin:0; background-color:#eee; 
 .floor .item {position: relative;padding:2%;}
 .floor .thumb {width:100%;}
 .floor .thumb img {width:100%;}
-.floor .p-name {position: absolute; bottom: 55px; background-color: rgba(0,0,0,0.5); display: block; border-radius: 5px; padding:5px 2%; color: #fff;width:92%;line-height:12px;height:16px;overflow: hidden}
+.floor .p-name {position: absolute; bottom: 90px; background-color: rgba(0,0,0,0.5); display: block; border-radius: 5px; padding:5px 2%; color: #fff;width:92%;line-height:12px;height:16px;overflow: hidden}
 .floor .info {font-size:12px;overflow: hidden}
-.floor .logo {width:30px;height:30px;border-radius:30px;border:10px solid #fff;position: absolute;left:20px;bottom:0;}
-.floor .p-detail {padding-left:70px;}
+.floor .logo {width:30px;height:30px;border-radius:30px;border:10px solid #fff;position: absolute;left:20px;bottom:20px;}
+.floor .p-detail {padding-left:70px;height:38px;overflow: hidden}
 .floor .btn-fav,.floor .btn-faved {width:30px;height:30px;display: block;background:rgba(0,0,0,0.2) url("../images/ico_fav.png") no-repeat;background-size:100% 100%;position: absolute;top:20px;right:20px;border-radius:5px;}
 .floor .btn-faved { }
 
