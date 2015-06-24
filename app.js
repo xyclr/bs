@@ -16,9 +16,6 @@ var settings = require('./settings');
 
 var flash = require('connect-flash');
 
-
-
-
 var app = express();
 
 var multer  = require('multer');
