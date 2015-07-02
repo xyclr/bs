@@ -201,6 +201,7 @@ body.body-small .navbar-top-links li:last-child {
 .nav.navbar-top-links a {
   font-size: 14px;
 }
+.input-group {width:100%;}
 .navbar-form-custom .form-control {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
   border: medium none;
@@ -2984,6 +2985,13 @@ video {
 .note-editor {
   height: auto;
   min-height: 300px;
+  border:1px solid #e5e6e7!important;
+}
+.note-editor .note-toolbar {border-bottom:1px solid #e5e6e7!important;}
+.note-editor .btn-default {
+  background-color: #fff;
+  border-color: #c2c2c2;
+  color: #333;
 }
 /* MODAL */
 .modal-content {
@@ -2996,7 +3004,7 @@ video {
   position: relative;
 }
 .modal-dialog {
-  z-index: 1200;
+  z-index: 12000;
 }
 .modal-body {
   padding: 20px 30px 30px 30px;

@@ -2,6 +2,8 @@ var crypto = require('crypto'),
     fs = require('fs-extra'),
     Sys = require('../models/sys.js'),
     User = require('../models/user.js'),
+    Post = require('../models/post.js'),
+    Comment = require('../models/comment.js'),
     async = require('async'),
     multer  = require('multer'),
     settings = require('../settings');
@@ -23,6 +25,48 @@ module.exports = function (app) {
             error: req.flash('error').toString()
         });
     });
+
+    app.get('/post', checkLogin);
+    app.get('/post', function (req, res) {
+        res.render('post', {
+            title: '发表',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+
+    app.post('/post', checkLogin);
+    app.post('/post', function (req, res) {
+        var currentUser = req.session.user,
+            tags = [req.body.tag1, req.body.tag2, req.body.tag3],
+            post = new Post(currentUser.name, req.body.title, tags, req.body.post);
+        post.save(function (err) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            req.flash('success', '发布成功!');
+            res.redirect('/');//发表成功跳转到主页
+        });
+    });
+
+    app.get('/archive', function (req, res) {
+        Post.getArchive(function (err, posts) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('archive', {
+                title: '存档',
+                posts: posts,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
+
 
     app.get('/file', function (req, res) {
         var path = settings.uploadPath,fileInfo = [];
@@ -272,10 +316,10 @@ module.exports = function (app) {
     });
 
     function checkLogin(req, res, next) {
-        /* if (!req.session.user) {
+         if (!req.session.user) {
          req.flash('error', '未登录!');
          return res.redirect('/login');  //一定要return 不然报错 “Can't set headers after they are sent.”
-         }*/
+         }
         next();
     }
 
