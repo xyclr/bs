@@ -2895,7 +2895,7 @@ a.forum-item-title:hover {
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #2f4050;
-  font-size: 13px;
+  font-size: 12px;
   color: #676a6c;
   overflow-x: hidden;
 }
@@ -3356,6 +3356,8 @@ code {
   border-image: none;
   border-style: solid solid none;
   border-width: 1px 0px;
+  clear:both;
+  overflow: hidden;
 }
 table.table-mail tr td {
   padding: 12px;
@@ -3383,9 +3385,7 @@ table.table-mail tr td {
 .unread td {
   background-color: #f9f8f8;
 }
-.ibox-content {
-  clear: both;
-}
+
 .ibox-heading {
   background-color: #f3f6fb;
   border-bottom: none;
@@ -3411,6 +3411,7 @@ table.table-mail tr td {
   float: right;
   margin-top:-2px;
 }
+.file-list li { width: 100%; overflow: hidden; font-size: 14px; margin: 2px 0; display: table; } .file-list li a { display: block; color: #333; width: 250px; margin-right: 50px; overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; } .file-list li a:hover { color: #337ab7; text-decoration: none; } .file-list li span { color: #999; margin-right: 30px; display: table-cell; width: 150px; } .file-list li span.cke { width: 20px;padding:0 10px 0 20px; } .file-list li span.cke input { vertical-align: -2px; }
 .ibox-tools {
   display: inline-block;
   float: right;

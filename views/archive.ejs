@@ -177,23 +177,32 @@
 
               <div class="ibox-title">
                 <div class="row">
-                  <div class="col-lg-12"> <h5>文章列表</h5></div>
+                  <div class="col-lg-3"> <h5>文章列表</h5></div>
+                  <div class="col-lg-9">
+                    <div class="ibox-tools-btn">
+                       <a class="btn btn-primary btn-xs" id="refresh"> <i class="fa fa-refresh btn-xs"></i> Refresh</a>
+                       <a class="btn btn-primary btn-xs" id="btn-select-all"> Select All </a> <a class="btn btn-primary btn-xs" id="btn-select-cancel"> Cancel Select </a>
+                      <a class="btn btn-warning btn-xs" id="btn-file-del"> <i class="fa fa-trash-o"></i> Del Select </a>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="ibox-content">
-                <style>
-                  .archive{list-style:none;line-height:28px;}
-                  .archive h3{margin:0.5em 0;}
-                  .archive time{float:left;font-size:14px;color:#999999;margin-right:1.2em;}
-                </style>
-                <ul class="archive">
+
+
+
+                <ul class="file-list" style="padding:0;">
                   <% var lastYear = 0 %>
                   <% posts.forEach(function (post, index) { %>
-                  <% if (lastYear != post.time.year) { %>
-                  <li><h3><%= post.time.year %></h3></li>
-                  <% lastYear=post.time.year } %>
-                  <li><time><%= post.time.day %></time></li>
-                  <li><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></li>
+                  <li path="http://www.ndesig.com:3030/config/">
+                    <span class="cke"><input type="checkbox" ></span>
+                    <a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><i class="fa fa-file-o"></i> <%= post.title %></a>
+                    <span class="time"><%= post.time.day %></span>
+                  <!--  <span class="btn-box">
+                      <span class="btn-view"><i class="fa fa-eye"></i>view</span>
+                      <span class="btn-select"><i class="fa fa-check-circle"></i>select</span>
+                    </span>-->
+                  </li>
                   <% }) %>
                 </ul>
               </div>

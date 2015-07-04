@@ -1,6 +1,6 @@
 var settings = {
-    stServer : "http://ndesig.com:3030",
-    Server : "http://ndesig.com"
+    stServer : "http://www.ndesig.com:3030",
+    Server : "http://www.ndesig.com"
 }
 
 var extendBootstrap = (function(){
