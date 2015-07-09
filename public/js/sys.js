@@ -83,13 +83,11 @@ var Sys = {
         } else if (type == "warning") {
             toastr.error(str);
         };
-    },
-
-
-    fileSelectCb : function(path){
-       $("#sys-box").find(".cur").val(path);
-        $("#fileBrower").modal("hide");
     }
 };
-
 Sys.init();
+
+function fileSelectCb(path){
+    $("#sys-box").find(".cur").val(path);
+    $("#fileBrower").modal("hide");
+};

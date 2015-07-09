@@ -3411,7 +3411,13 @@ table.table-mail tr td {
   float: right;
   margin-top:-2px;
 }
-.file-list li { width: 100%; overflow: hidden; font-size: 14px; margin: 2px 0; display: table; } .file-list li a { display: block; color: #333; width: 250px; margin-right: 50px; overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; } .file-list li a:hover { color: #337ab7; text-decoration: none; } .file-list li span { color: #999; margin-right: 30px; display: table-cell; width: 150px; } .file-list li span.cke { width: 20px;padding:0 10px 0 20px; } .file-list li span.cke input { vertical-align: -2px; }
+.file-list li { width: 100%; overflow: hidden; font-size: 14px; margin: 2px 0; display: table; }
+.file-list li a { display: block; color: #333; width: 250px; margin-right: 50px; overflow: hidden; word-wrap: normal; white-space: nowrap; text-overflow: ellipsis; }
+.file-list li a:hover { color: #337ab7; text-decoration: none; }
+.file-list li span { color: #999; margin-right: 30px; display: table-cell; width: 150px; }
+.file-list li span.cke { width: 20px;padding:0 10px 0 20px; }
+.file-list li span.cke input { vertical-align: -2px; }
+.file-list li .btn-box a {display:inline-block;width:auto;margin-right:5px;vertical-align: middle}
 .ibox-tools {
   display: inline-block;
   float: right;

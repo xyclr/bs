@@ -67,11 +67,10 @@
 					<div class="ibox">
 						<div class="ibox-content">
 							<div class="pull-right">
-								<% if (user && (user.name == post.name)) { %>
 								<a class="btn btn-primary btn-xs" id="refresh"> <i class="fa fa-refresh btn-xs"></i> 刷新</a>
-								<a class="btn btn-primary btn-xs" href="/edit/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" > <i class="fa fa-edit"></i> 编辑</a>
-								<a class="btn btn-warning btn-xs"  href="/remove/<%= post.name %>/<%= post.time.day %>/<%= post.title %>" > <i class="fa fa-del"></i> 删除</a>
-								<% } %>
+								<a class="btn btn-primary btn-xs" href="/edit/p/<%= post._id %>" > <i class="fa fa-edit"></i> 编辑</a>
+								<a class="btn btn-warning btn-xs"  href="/remove/p/<%= post._id %>" > <i class="fa fa-del"></i> 删除</a>
+
 							</div>
 							<div class="text-center article-title">
 								<span class="text-muted"><i class="fa fa-clock-o"></i><%= post.time.minute %></span>

@@ -1,7 +1,11 @@
+window.pageConfig=window.pageConfig||{};
+
 var settings = {
     stServer : "http://www.ndesig.com:3030",
     Server : "http://www.ndesig.com"
 }
+
+
 
 var extendBootstrap = (function(){
     $(".dropdown").each(function(item){

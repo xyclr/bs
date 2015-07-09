@@ -1,12 +1,12 @@
 var mongoose = require('./db');
-
-
+var ObjectID = require('mongodb').ObjectID;
 
 var userSchema = new mongoose.Schema({
     name: String,
     title: String,
     tags: String,
     post: String,
+    thumb: String,
     time: {}
 }, {
     collection: 'posts'
@@ -14,11 +14,13 @@ var userSchema = new mongoose.Schema({
 
 var postModel = mongoose.model('Post', userSchema);
 
-function Post(name, title,tags, post) {
+function Post(name, title,tags, post,thumb,extra) {
     this.name = name;
     this.title = title;
     this.tags = tags;
     this.post = post;
+    this.thumb = thumb;
+    this.extra = extra;
 }
 
 module.exports = Post;
@@ -41,10 +43,11 @@ Post.prototype.save = function (callback) {
         title: this.title,
         tags: this.tags,
         post: this.post,
+        thumb :this.thumb,
         comments: [],
-        pv: 0
+        pv: 0,
+        extra :{}
     };
-
     var newPost = new postModel(post);
     //打开数据库
     newPost.save(function (err, post) {
@@ -56,12 +59,10 @@ Post.prototype.save = function (callback) {
 };
 
 //获取一篇文章
-Post.getOne = function(name, day, title, callback) {
+Post.getOne = function(_id, callback) {
 
     postModel.findOne({
-        "name": name,
-        "time.day": day,
-        "title": title
+        "_id": new ObjectID(_id)
     }, function (err, doc) {
         if (err) {
             return callback(err);
@@ -70,16 +71,15 @@ Post.getOne = function(name, day, title, callback) {
             callback(null, doc);//返回查询的一篇文章
         }
     });
+
 };
 
 
 
 //返回原始发表的内容（markdown 格式）
-Post.edit = function (name, day, title, callback) {
+Post.edit = function (_id, callback) {
     postModel.findOne({
-        "name": name,
-        "time.day": day,
-        "title": title
+        "_id": new ObjectID(_id)
     }, function (err, doc) {
         if (err) {
             return callback(err);
@@ -91,32 +91,19 @@ Post.edit = function (name, day, title, callback) {
 };
 
 //更新一篇文章及其相关信息
-Post.update = function (name, day, title, post, callback) {
-    postModel.update({
-        "name": name,
-        "time.day": day,
-        "title": title
-    },{
-        $set: {post: post}
-    },{
-        upsert : true
-    }, function (err, doc) {
+Post.update = function (_id,name, day, title, post, callback) {
+    postModel.findByIdAndUpdate(_id,{$set:{name:name,day:day,title:title,post:post}},function(err){
         if (err) {
             return callback(err);
         }
-        if (doc) {
-            callback(null, doc);//返回查询的一篇文章
-        }
+        callback(null);
     });
-
 };
 
 //删除一篇文章
-Post.remove = function (name, day, title, callback) {
+Post.remove = function (_id, callback) {
     postModel.remove({
-        "name": name,
-        "time.day": day,
-        "title": title
+        "_id": new ObjectID(_id)
     }, function (err, doc) {
         if (err) {
             return callback(err);

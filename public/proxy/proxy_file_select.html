@@ -12,7 +12,7 @@
         var r = window.location.search.substr(1).match(reg);
         if(r!=null)return  unescape(r[2]); return null;
     };
-    parent.parent.Sys.fileSelectCb(GetQueryString("path")); // execute main function
+    parent.parent.fileSelectCb(GetQueryString("path")); // execute main function
 </script>
 </body>
 </html>

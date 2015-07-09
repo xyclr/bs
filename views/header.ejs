@@ -28,5 +28,32 @@
   <script src="http://www.ndesig.com/js/jquery.metisMenu.js"></script>
   <script src="http://www.ndesig.com/js/jquery.slimscroll.min.js"></script>
   <script src="http://www.ndesig.com/js/plugins/toastr/toastr.min.js" ></script>
+
+  <script type="text/javascript">
+
+    $(function(){
+      //提示信息
+      <% if (success) { %>
+      toastr.success('<%= success %>');
+      <% } %>
+      <% if (error) { %>
+      toastr.error('<%= error %>');
+      <% } %>
+
+      //导航设置
+      var pageCat = window.location.pathname.split('/')[1];
+      var siderLi = $("#side-menu>li:not('.nav-header')");
+      if( pageCat.match(/archive|post|edit|category/ig) != null) {
+        siderLi.removeClass('active').eq(1).addClass('active');
+      } else if(pageCat.match(/file/ig) != null) {
+        siderLi.removeClass('active').eq(2).addClass('active');
+      } else if(pageCat.match(/sys/ig) != null) {
+        siderLi.removeClass('active').eq(3).addClass('active');
+      }
+
+
+    })
+
+  </script>
 </head>
 	  

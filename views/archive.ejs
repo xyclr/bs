@@ -179,11 +179,11 @@
                 <div class="row">
                   <div class="col-lg-3"> <h5>文章列表</h5></div>
                   <div class="col-lg-9">
-                    <div class="ibox-tools-btn">
+                  <!--  <div class="ibox-tools-btn">
                        <a class="btn btn-primary btn-xs" id="refresh"> <i class="fa fa-refresh btn-xs"></i> Refresh</a>
                        <a class="btn btn-primary btn-xs" id="btn-select-all"> Select All </a> <a class="btn btn-primary btn-xs" id="btn-select-cancel"> Cancel Select </a>
                       <a class="btn btn-warning btn-xs" id="btn-file-del"> <i class="fa fa-trash-o"></i> Del Select </a>
-                    </div>
+                    </div>-->
                   </div>
                 </div>
               </div>
@@ -195,13 +195,13 @@
                   <% var lastYear = 0 %>
                   <% posts.forEach(function (post, index) { %>
                   <li path="http://www.ndesig.com:3030/config/">
-                    <span class="cke"><input type="checkbox" ></span>
-                    <a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><i class="fa fa-file-o"></i> <%= post.title %></a>
+                   <!-- <span class="cke"><input type="checkbox" ></span>-->
+                    <a class="tit" href="/p/<%= post._id %>"><i class="fa fa-file-o"></i> <%= post.title %></a>
                     <span class="time"><%= post.time.day %></span>
-                  <!--  <span class="btn-box">
-                      <span class="btn-view"><i class="fa fa-eye"></i>view</span>
-                      <span class="btn-select"><i class="fa fa-check-circle"></i>select</span>
-                    </span>-->
+                      <span class="btn-box">
+                      <a   href="/edit/p/<%= post._id %>" ><i class="fa fa-edit"></i>编辑</a>
+                      <a  href="/remove/p/<%= post._id %>"><i class="fa fa-trash-o"></i>删除</a>
+                    </span>
                   </li>
                   <% }) %>
                 </ul>
