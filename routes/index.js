@@ -26,6 +26,37 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/comment/:_id', checkLogin);
+    app.get('/comment/:_id', function (req, res) {
+        Post.getOne(req.params._id, function (err, post) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('comment', {
+                title: post.title,
+                post: post,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
+
+    app.post('/comment/:_id', checkLogin);
+    app.post('/comment/:_id', function (req, res) {
+        var _id = req.params._id;
+        var newComment = new Comment(req.body.name,req.body.comment);
+        newComment.save(_id,function (err) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('back');
+            }
+            req.flash('success', '留言成功!');
+            res.redirect('back');
+        });
+    });
+
     app.get('/post', checkLogin);
     app.get('/post', function (req, res) {
         res.render('post', {
@@ -38,16 +69,19 @@ module.exports = function (app) {
 
     app.post('/post', checkLogin);
     app.post('/post', function (req, res) {
-        var currentUser = req.session.user,
-            tags = [req.body.tag1, req.body.tag2, req.body.tag3],
-            post = new Post(currentUser.name, req.body.title, tags, req.body.post);
+        var post = new Post( req.body.title, req.body.tag, req.body.post,req.body.thumb,[
+            req.body.org1,
+            req.body.org2,
+            req.body.casetime,
+            req.body.target,
+    ]);
         post.save(function (err) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/');
             }
             req.flash('success', '发布成功!');
-            res.redirect('/');//发表成功跳转到主页
+            res.redirect('/archive');
         });
     });
 
@@ -67,6 +101,38 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/user', function (req, res) {
+        Post.getUser(function (err, posts) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('archive', {
+                title: '用户管理',
+                posts: posts,
+                user: req.session.posts,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
+
+    app.get('/p/:_id', function(req, res){
+        Post.getOne(req.params._id, function (err, post) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('article', {
+                title: post.title,
+                post: post,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    })
+
     app.get('/u/:name/:day/:title', function (req, res) {
         Post.getOne(req.params.name, req.params.day, req.params.title, function (err, post) {
             if (err) {
@@ -83,10 +149,9 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/edit/:name/:day/:title', checkLogin);
-    app.get('/edit/:name/:day/:title', function (req, res) {
-        var currentUser = req.session.user;
-        Post.edit(currentUser.name, req.params.day, req.params.title, function (err, post) {
+    app.get('/edit/:_id', checkLogin);
+    app.get('/edit/:_id', function (req, res) {
+        Post.edit(req.params._id, function (err, post) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('back');
@@ -101,11 +166,10 @@ module.exports = function (app) {
         });
     });
 
-    app.post('/edit/:name/:day/:title', checkLogin);
-    app.post('/edit/:name/:day/:title', function (req, res) {
-        var currentUser = req.session.user;
-        Post.update(currentUser.name, req.params.day, req.params.title, req.body.post, function (err) {
-            var url = '/u/' + req.params.name + '/' + req.params.day + '/' + req.params.title;
+    app.post('/edit/:_id', checkLogin);
+    app.post('/edit/:_id', function (req, res) {
+        Post.update(req.params._id, req.body.title,req.body.tag,req.body.thumb,req.body.post, function (err) {
+            var url = '/p/' + req.params._id;
             if (err) {
                 req.flash('error', err);
                 return res.redirect(url);//出错！返回文章页
@@ -116,10 +180,9 @@ module.exports = function (app) {
     });
 
 
-    app.get('/remove/:name/:day/:title', checkLogin);
-    app.get('/remove/:name/:day/:title', function (req, res) {
-        var currentUser = req.session.user;
-        Post.remove(currentUser.name, req.params.day, req.params.title, function (err) {
+    app.get('/remove/:_id', checkLogin);
+    app.get('/remove/:_id', function (req, res) {
+        Post.remove(req.params._id, function (err) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('back');
@@ -132,7 +195,6 @@ module.exports = function (app) {
 
     app.get('/file', function (req, res) {
         var path = settings.uploadPath,fileInfo = [];
-        console.info(settings.uploadPath);
         explorer(path);
         function explorer(path){
             fs.readdir(path, function(err, files){
@@ -223,8 +285,6 @@ module.exports = function (app) {
             });
         });
     });
-
-
 
 
     app.get('/sys', checkLogin);

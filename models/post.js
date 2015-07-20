@@ -1,4 +1,5 @@
 var mongoose = require('./db');
+var ObjectID = require('mongodb').ObjectID;
 
 
 
@@ -7,18 +8,23 @@ var userSchema = new mongoose.Schema({
     title: String,
     tags: String,
     post: String,
-    time: {}
+    time: {},
+    comment : Array,
+    thumb : String,
+    caseinfo : Array,
+    extra :{}
 }, {
     collection: 'posts'
 });
 
 var postModel = mongoose.model('Post', userSchema);
 
-function Post(name, title,tags, post) {
-    this.name = name;
+function Post(title,tags, post,thumb,caseinfo) {
     this.title = title;
     this.tags = tags;
     this.post = post;
+    this.thumb = thumb;
+    this.caseinfo = caseinfo;
 }
 
 module.exports = Post;
@@ -36,51 +42,59 @@ Post.prototype.save = function (callback) {
     }
     //要存入数据库的文档
     var post = {
-        name: this.name,
-        time: time,
         title: this.title,
+        time: time,
         tags: this.tags,
         post: this.post,
+        thumb : this.thumb,
+        caseinfo : this.caseinfo,
         comments: [],
-        pv: 0
+        extra : {
+            pv : 0,
+            donations : {
+                user : {}
+            },//捐款统计
+            posi : -1
+        }
     };
 
     var newPost = new postModel(post);
     //打开数据库
-    newPost.save(function (err, post) {
+    newPost.save(function (err, doc) {
         if (err) {
             return callback(err);
         }
-        callback(null, post);
+        callback(null, doc);
     });
 };
 
 //获取一篇文章
-Post.getOne = function(name, day, title, callback) {
-
-    postModel.findOne({
-        "name": name,
-        "time.day": day,
-        "title": title
-    }, function (err, doc) {
+Post.getOne = function(_id, callback) {
+    postModel.findOne({"_id": new ObjectID(_id)}, function (err, doc) {
         if (err) {
             return callback(err);
         }
         if (doc) {
+            //每访问 1 次，pv 值增加 1
+            postModel.update({"_id": new ObjectID(_id)}, {
+                $inc: {"extra.pv": 1}
+            }, {
+                upsert: true
+            }, function (err, doc) {
+                console.info(err)
+            });
+
             callback(null, doc);//返回查询的一篇文章
         }
     });
+
 };
 
 
 
 //返回原始发表的内容（markdown 格式）
-Post.edit = function (name, day, title, callback) {
-    postModel.findOne({
-        "name": name,
-        "time.day": day,
-        "title": title
-    }, function (err, doc) {
+Post.edit = function (_id, callback) {
+    postModel.findOne({"_id": new ObjectID(_id)}, function (err, doc) {
         if (err) {
             return callback(err);
         }
@@ -91,13 +105,16 @@ Post.edit = function (name, day, title, callback) {
 };
 
 //更新一篇文章及其相关信息
-Post.update = function (name, day, title, post, callback) {
+Post.update = function (_id, title, tags, thumb,post, callback) {
     postModel.update({
-        "name": name,
-        "time.day": day,
-        "title": title
+        "_id": new ObjectID(_id)
     },{
-        $set: {post: post}
+        $set: {
+            "title": title,
+            "tags": tags,
+            "thumb": thumb,
+             post: post
+        }
     },{
         upsert : true
     }, function (err, doc) {
@@ -112,12 +129,8 @@ Post.update = function (name, day, title, post, callback) {
 };
 
 //删除一篇文章
-Post.remove = function (name, day, title, callback) {
-    postModel.remove({
-        "name": name,
-        "time.day": day,
-        "title": title
-    }, function (err, doc) {
+Post.remove = function (_id, callback) {
+    postModel.remove({"_id": new ObjectID(_id)}, function (err, doc) {
         if (err) {
             return callback(err);
         }
@@ -130,6 +143,20 @@ Post.remove = function (name, day, title, callback) {
 //返回所有文章存档信息
 Post.getArchive = function (callback) {
 
+    postModel.find({},{
+        "name": 1,
+        "time": 1,
+        "title": 1
+    }, {},function (err, docs) {
+        if (err) {
+            return callback(err);
+        }
+        callback(null, docs);
+    });
+};
+
+//返回用户信息
+Post.getUser = function (callback) {
     postModel.find({},{
         "name": 1,
         "time": 1,

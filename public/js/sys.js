@@ -9,7 +9,7 @@ var Sys = {
 
     event : function(){
         //上传图片
-        $("#sys-box").delegate(".btn-upload","click",function(){
+        $("#sys").delegate(".btn-upload","click",function(){
             $("#fileBrower").modal();
             $(this).parent().prev().addClass("cur");
             return false;
@@ -24,7 +24,7 @@ var Sys = {
             debounce(function(){
                 $.post("/sys",{settingArr : Sys.getDomData()},function(result){
                     $btn.button('reset');
-                    Sys.showTip("succ","保存成功!","sys-box");
+                    Sys.showTip("succ","保存成功!","sys");
                 });
             },1000,true)();
         })
@@ -33,7 +33,7 @@ var Sys = {
     //删除item
     removeItem : function() {
         //绑定删除元素事件
-        $("#sys-box").delegate('.del-item', 'click', function() {
+        $("#sys").delegate('.del-item', 'click', function() {
             $(this).parents(".form-group").remove();
         });
     },
@@ -70,7 +70,7 @@ var Sys = {
 
     getDomData : function(){
         var data = [];
-        $("#sys-box .form-group").each(function(){
+        $("#sys .form-group").each(function(){
             var  _this = $(this);
             data.push([_this.find(".form-control").attr("name"),_this.find(".control-label").text(),_this.find(".form-control").val(),_this.find(".input-group").attr("data-type")]);
         });
@@ -86,8 +86,8 @@ var Sys = {
     },
 
 
-    fileSelectCb : function(path){
-       $("#sys-box").find(".cur").val(path);
+    fileSelectCb : function(obj,path){
+        $("#" + obj).find(".cur").val(path);
         $("#fileBrower").modal("hide");
     }
 };

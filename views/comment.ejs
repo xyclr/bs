@@ -53,7 +53,7 @@
 						<a href="./">首页</a>
 					</li>
 					<li class="active">
-						<strong>文章内容</strong>
+						<strong>文章内容-留言</strong>
 					</li>
 				</ol>
 			</div>
@@ -66,7 +66,7 @@
 				<div class="col-lg-10 col-lg-offset-1">
 					<div class="ibox">
 						<div class="ibox-content">
-							<div class="pull-right">
+							<div class="pull-right" style="display: none">
 								<a class="btn btn-primary btn-xs" href="/edit/<%= post._id %>" > <i class="fa fa-edit"></i> 编辑</a>
 								<a class="btn btn-warning btn-xs"  href="/remove/<%= post._id %>" > <i class="fa fa-del"></i> 删除</a>
 								<a class="btn btn-warning btn-xs"  href="/comment/<%= post._id %>" > <i class="fa fa-del"></i>留言</a>
@@ -75,55 +75,21 @@
 								<h1>
 									<%- post.title %>
 								</h1>
-								<style>
-									.info-table {border:1px solid #ddd;margin: 20px auto;}
-									.info-table td {border:1px solid #ddd;padding:5px 10px;}
-									.info-table td strong {width:100px;text-align: right;}
-								</style>
-								<table class="info-table">
-									<tr>
-										<td align="right"><strong>项目发布时间</strong>： </td>
-										<td><span class="text-muted"><%= post.time.minute %> </span> </td>
-									</tr>
-									<tr>
-										<td align="right"><strong>分类</strong>： </td>
-										<td><span class="text-muted"><%- post.tags %> </span> </td>
-									</tr>
-									<tr>
-										<td align="right"><strong>项目执行机构：</strong> </td>
-										<td><span class="text-muted"><%- post.caseinfo[0] %></span> </td>
-									</tr>
-									<tr>
-										<td align="right"><strong>善款接受机构：</strong></td>
-										<td> <span class="text-muted"><%- post.caseinfo[1] %></span></td>
-									</tr>
-									<tr>
-										<td align="right"><strong>项目时间：</strong> </td>
-										<td> <span class="text-muted"><%- post.caseinfo[2] %></span></td>
-									</tr>
-									<tr>
-										<td align="right"><strong>目标：</strong></td>
-										<td> <span class="text-muted"><%- post.caseinfo[3] %></span></td>
-									</tr>
-								</table>
 							</div>
 							<div class="">
-								<p><%- post.post %></p>
-							</div>
-							<hr>
-							<div class="row" style="display:none;">
-								<div class="col-md-6">
-									<h5>Tags:</h5>
-									<button class="btn btn-primary btn-xs" type="button">Model</button>
-									<button class="btn btn-white btn-xs" type="button">Publishing</button>
-								</div>
-								<div class="col-md-6">
-									<div class="small text-right">
-										<h5>Stats:</h5>
-										<div> <i class="fa fa-comments-o"> </i> 56 comments </div>
-										<i class="fa fa-eye"> </i> 144 views
+								<form method="post" class="form-horizontal">
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="name">名字</label>
+										<div class="col-sm-10"><input type="text" class="form-control" id="name" name="name" placeholder="名字"></div>
 									</div>
-								</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="comment">正文</label>
+										<div class="col-sm-10"><textarea name="comment" id="" cols="30" rows="10" placeholder="留言内容" class="form-control"></textarea></div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-4 col-sm-offset-2"> <button type="submit" class="btn btn-primary">发表</button></div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>

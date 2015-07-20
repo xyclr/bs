@@ -81,7 +81,7 @@
 								</div>
 							</div>
 							<div class="ibox-content">
-								<form  method="post" class="form-horizontal">
+								<form  method="post" class="form-horizontal" id="post">
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="title" >标题</label>
 										<div class="col-sm-10"><input type="text" class="form-control" id="title" name="title" placeholder="文章标题" value="<%= post.title %>" ></div>
@@ -91,9 +91,64 @@
 										<label class="col-sm-2 control-label">标签</label>
 										<div class="col-sm-10">
 											<div class="row">
-												<div class="col-md-2"><input type="text" placeholder=".标签" class="form-control" name="tag1" value="<%= post.tags[0] %>" disabled="disabled"></div>
-												<div class="col-md-3"><input type="text" placeholder=".标签" class="form-control" name="tag2" value="<%= post.tags[1] %>" disabled="disabled"></div>
-												<div class="col-md-4"><input type="text" placeholder=".标签" class="form-control" name="tag3" value="<%= post.tags[2] %>" disabled="disabled"></div>
+												<div class="col-md-4"><input type="text" placeholder=".标签" class="form-control" name="tag" value="<%= post.tags %>"></div>
+											</div>
+										</div>
+									</div>
+
+									<!--extra start-->
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label">机执行机构名称构</label>
+										<div class="col-sm-10">
+											<div class="row">
+												<div class="col-md-4"><input type="text" placeholder=".执行机构名称" class="form-control" name="org1" value="<%= post.caseinfo[0] %>"></div>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label">捐款机构名称</label>
+										<div class="col-sm-10">
+											<div class="row">
+												<div class="col-md-4"><input type="text" placeholder=".捐款机构名称" class="form-control" name="org2" value="<%= post.caseinfo[1] %>"></div>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label">项目持续时间</label>
+										<div class="col-sm-10">
+											<div class="row">
+												<div class="col-md-4"><input type="text" placeholder=".时间（2015/7/16 - 2015/8/16）" class="form-control" name="casetime" value="<%= post.caseinfo[2] %>"></div>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label">项目目标</label>
+										<div class="col-sm-10">
+											<div class="row">
+												<div class="col-md-4"><input type="text" placeholder=".目标" class="form-control" name="target" value="<%= post.caseinfo[3] %>"></div>
+											</div>
+										</div>
+									</div>
+
+
+
+									<!--extra end-->
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="thumb">缩略图</label>
+										<div class="col-sm-10">
+											<div class="row">
+												<div class="col-md-10">
+													<div class="input-group" data-type="file">
+														<input type="text" class="form-control cur" name="thumb" value="<%= post.thumb %>">
+														<span class="input-group-btn"> <a class="btn btn-default btn-upload" data-toggle="modal" data-target="#fileUpload">选择</a> </span>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -117,6 +172,28 @@
 		</div>
 	</div>
 </div>
+
+
+<div class="modal inmodal fade bs-example-modal-lg" id="fileBrower" tabindex="-1" role="dialog"  aria-hidden="true" >
+	<div class="modal-dialog modal-lg" style="width:1000px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">File Browser</h4>
+			</div>
+			<div class="modal-body">
+				<iframe src="http://www.ndesig.com:3030/uploads" frameborder="0" style="border:none;overflow-y:auto;height:350px;width:100%;backgrounnd-color:transparent"></iframe>
+				<div class="form-group">
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" id="file_upload" value="Upload"/>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- Custom and plugin javascript -->
 <script src="http://www.ndesig.com/js/inspinia.js"></script>
 <script src="http://www.ndesig.com/js/pace.min.js"></script>
@@ -126,6 +203,7 @@
 <link href="http://www.ndesig.com/css/summernote.css" rel="stylesheet">
 <link href="http://www.ndesig.com/css/summernote-bs3.css" rel="stylesheet">
 <script type="text/javascript" src="http://www.ndesig.com/js/summernote.js"></script>
+<script type="text/javascript" src="http://www.ndesig.com/js/post.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {

@@ -12,7 +12,14 @@
         var r = window.location.search.substr(1).match(reg);
         if(r!=null)return  unescape(r[2]); return null;
     };
-    parent.parent.Sys.fileSelectCb(GetQueryString("path")); // execute main function
+
+    if( parent.parent.Sys !== undefined) {
+        parent.parent.Sys.fileSelectCb("sys",GetQueryString("path"));
+    } else {
+        parent.parent.Post.fileSelectCb("post",GetQueryString("path"));
+    }
+
+
 </script>
 </body>
 </html>
