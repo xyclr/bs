@@ -4,9 +4,6 @@
     <list default="true" id="c2ee6b91-b75a-403e-babe-efaf2a5c256d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/edit.ejs" afterPath="$PROJECT_DIR$/views/edit.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/file.ejs" afterPath="$PROJECT_DIR$/views/file.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/post.ejs" afterPath="$PROJECT_DIR$/views/post.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stServer.js" afterPath="$PROJECT_DIR$/stServer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/sys.ejs" afterPath="$PROJECT_DIR$/views/sys.ejs" />
     </list>
     <ignored path="bs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="stServer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="stServer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stServer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.99589324" vertical-offset="5975" max-vertical-offset="8303">
+            <state vertical-scroll-proportion="-16.724138" vertical-offset="5975" max-vertical-offset="8303">
               <caret line="340" column="17" selection-start-line="340" selection-start-column="17" selection-end-line="340" selection-end-column="17" />
               <folding>
                 <marker date="1437560019909" expanded="true" signature="11608:11624" placeholder="..." />
@@ -83,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/views/edit.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-8.0" vertical-offset="3272" max-vertical-offset="4294">
-              <caret line="184" column="29" selection-start-line="184" selection-start-column="29" selection-end-line="184" selection-end-column="50" />
+              <caret line="184" column="38" selection-start-line="184" selection-start-column="38" selection-end-line="184" selection-end-column="38" />
               <folding>
                 <element signature="n#style#0;n#iframe#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -95,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/views/file.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-5.964286" vertical-offset="3462" max-vertical-offset="4104">
-              <caret line="191" column="63" selection-start-line="191" selection-start-column="63" selection-end-line="191" selection-end-column="84" />
+              <caret line="191" column="72" selection-start-line="191" selection-start-column="72" selection-end-line="191" selection-end-column="72" />
               <folding>
                 <element signature="n#style#0;n#iframe#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#!!top" expanded="true" />
               </folding>
@@ -103,10 +100,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sys.ejs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sys.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/sys.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.4210527" vertical-offset="5581" max-vertical-offset="7030">
+            <state vertical-scroll-proportion="0.29237288" vertical-offset="5581" max-vertical-offset="7030">
               <caret line="301" column="36" selection-start-line="301" selection-start-column="36" selection-end-line="301" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#iframe#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#!!top" expanded="true" />
@@ -210,9 +207,9 @@
         <option value="$PROJECT_DIR$/public/js/common.js" />
         <option value="$PROJECT_DIR$/views/sys.ejs" />
         <option value="$PROJECT_DIR$/views/post.ejs" />
-        <option value="$PROJECT_DIR$/views/file.ejs" />
-        <option value="$PROJECT_DIR$/views/edit.ejs" />
         <option value="$PROJECT_DIR$/stServer.js" />
+        <option value="$PROJECT_DIR$/views/edit.ejs" />
+        <option value="$PROJECT_DIR$/views/file.ejs" />
       </list>
     </option>
   </component>
@@ -2209,12 +2206,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/sys.ejs">
+    <entry file="file://$PROJECT_DIR$/stServer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4210527" vertical-offset="5581" max-vertical-offset="7030">
-          <caret line="301" column="36" selection-start-line="301" selection-start-column="36" selection-end-line="301" selection-end-column="36" />
+        <state vertical-scroll-proportion="-16.724138" vertical-offset="5975" max-vertical-offset="8303">
+          <caret line="340" column="17" selection-start-line="340" selection-start-column="17" selection-end-line="340" selection-end-column="17" />
           <folding>
-            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#!!top" expanded="true" />
+            <marker date="1437560019909" expanded="true" signature="11608:11624" placeholder="..." />
+            <marker date="1437560019909" expanded="true" signature="11671:11681" placeholder="..." />
+            <marker date="1437560019909" expanded="true" signature="11796:11831" placeholder="..." />
+            <marker date="1437560019909" expanded="true" signature="11865:11907" placeholder="..." />
+            <marker date="1437560019909" expanded="true" signature="12819:12831" placeholder="..." />
+            <marker date="1437560019909" expanded="true" signature="17876:17888" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/edit.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.0" vertical-offset="3272" max-vertical-offset="4294">
+          <caret line="184" column="38" selection-start-line="184" selection-start-column="38" selection-end-line="184" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/file.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.964286" vertical-offset="3462" max-vertical-offset="4104">
+          <caret line="191" column="72" selection-start-line="191" selection-start-column="72" selection-end-line="191" selection-end-column="72" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2229,37 +2251,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/file.ejs">
+    <entry file="file://$PROJECT_DIR$/views/sys.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.964286" vertical-offset="3462" max-vertical-offset="4104">
-          <caret line="191" column="63" selection-start-line="191" selection-start-column="63" selection-end-line="191" selection-end-column="84" />
+        <state vertical-scroll-proportion="0.29237288" vertical-offset="5581" max-vertical-offset="7030">
+          <caret line="301" column="36" selection-start-line="301" selection-start-column="36" selection-end-line="301" selection-end-column="36" />
           <folding>
-            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/edit.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.0" vertical-offset="3272" max-vertical-offset="4294">
-          <caret line="184" column="29" selection-start-line="184" selection-start-column="29" selection-end-line="184" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stServer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.99589324" vertical-offset="5975" max-vertical-offset="8303">
-          <caret line="340" column="17" selection-start-line="340" selection-start-column="17" selection-end-line="340" selection-end-column="17" />
-          <folding>
-            <marker date="1437560019909" expanded="true" signature="11608:11624" placeholder="..." />
-            <marker date="1437560019909" expanded="true" signature="11671:11681" placeholder="..." />
-            <marker date="1437560019909" expanded="true" signature="11796:11831" placeholder="..." />
-            <marker date="1437560019909" expanded="true" signature="11865:11907" placeholder="..." />
-            <marker date="1437560019909" expanded="true" signature="12819:12831" placeholder="..." />
-            <marker date="1437560019909" expanded="true" signature="17876:17888" placeholder="..." />
+            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
