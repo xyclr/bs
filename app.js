@@ -40,7 +40,7 @@ app.use(multer({
 
 
 // all environments
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 3031);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
@@ -75,18 +75,4 @@ var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-var io = require('socket.io').listen(server,{log:false});
-io.on('connection', function(socket){
-  console.log('a user connected');
-
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
-  });
-
-});
 
