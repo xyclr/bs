@@ -4,6 +4,7 @@ module.exports = {
   host: 'localhost',
   staticSever : './public',
   uploadPath : "./public/uploads",
-  stServer : "http://st.ndesig.com"
+  stServer : "http://st.ndesig.com",
+  Server : "http://www.ndesig.com"
 }; 
 

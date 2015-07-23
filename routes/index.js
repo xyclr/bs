@@ -63,7 +63,8 @@ module.exports = function (app) {
             title: '发表',
             user: req.session.user,
             success: req.flash('success').toString(),
-            error: req.flash('error').toString()
+            error: req.flash('error').toString(),
+            settings : settings
         });
     });
 
@@ -161,7 +162,8 @@ module.exports = function (app) {
                 post: post,
                 user: req.session.user,
                 success: req.flash('success').toString(),
-                error: req.flash('error').toString()
+                error: req.flash('error').toString(),
+                settings : settings
             });
         });
     });
@@ -224,7 +226,9 @@ module.exports = function (app) {
                             user: req.session.user,
                             fileInfo : fileInfo,
                             success: req.flash('success').toString(),
-                            error: req.flash('error').toString()
+                            error: req.flash('error').toString(),
+                            settings : settings
+
                         });
                         Timer = false;
                     }
@@ -299,7 +303,8 @@ module.exports = function (app) {
                     user: req.session.user,
                     sys : {settings :Sys.initCfg },//加载默认配置
                     success: req.flash('success').toString(),
-                    error: req.flash('error').toString()
+                    error: req.flash('error').toString(),
+                    settings : settings
                 });
 
 
