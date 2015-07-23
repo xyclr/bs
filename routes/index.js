@@ -263,7 +263,7 @@ module.exports = function (app) {
             "}</script>";
             scriptStr += "</body></html>"
             if (err)  {
-                res.write('<script>parent.parent.submitCb("error",err)</script>')
+                res.write('<script>parent.parent.submitCb("error","上传出错啦")</script>')
                 return console.error(err);
             } else {
                 console.log("success!");
