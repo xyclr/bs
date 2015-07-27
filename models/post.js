@@ -12,6 +12,7 @@ var userSchema = new mongoose.Schema({
     comment : Array,
     thumb : String,
     caseinfo : Array,
+    posi : String,
     extra :{}
 }, {
     collection: 'posts'
@@ -19,12 +20,13 @@ var userSchema = new mongoose.Schema({
 
 var postModel = mongoose.model('Post', userSchema);
 
-function Post(title,tags, post,thumb,caseinfo) {
+function Post(title,tags, post,thumb,caseinfo,posi) {
     this.title = title;
     this.tags = tags;
     this.post = post;
     this.thumb = thumb;
     this.caseinfo = caseinfo;
+    this.posi = posi;
 }
 
 module.exports = Post;
@@ -48,13 +50,13 @@ Post.prototype.save = function (callback) {
         post: this.post,
         thumb : this.thumb,
         caseinfo : this.caseinfo,
+        posi : this.posi,
         comments: [],
         extra : {
             pv : 0,
             donations : {
                 user : {}
-            },//捐款统计
-            posi : -1
+            }//捐款统计
         }
     };
 
@@ -105,15 +107,17 @@ Post.edit = function (_id, callback) {
 };
 
 //更新一篇文章及其相关信息
-Post.update = function (_id, title, tags, thumb,post, callback) {
+Post.update = function (_id, title, tags, post,thumb, caseinfo,posi, callback) {
     postModel.update({
         "_id": new ObjectID(_id)
     },{
         $set: {
             "title": title,
             "tags": tags,
+            "post": post,
             "thumb": thumb,
-             post: post
+            "caseinfo": caseinfo,
+            "posi": posi
         }
     },{
         upsert : true
