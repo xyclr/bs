@@ -74,8 +74,8 @@ module.exports = function (app) {
             req.body.org1,
             req.body.org2,
             req.body.casetime,
-            req.body.target,
-    ]);
+            req.body.target
+    ],req.body.posi);
         post.save(function (err) {
             if (err) {
                 req.flash('error', err);
@@ -168,9 +168,16 @@ module.exports = function (app) {
         });
     });
 
+
+
     app.post('/edit/:_id', checkLogin);
     app.post('/edit/:_id', function (req, res) {
-        Post.update(req.params._id, req.body.title,req.body.tag,req.body.thumb,req.body.post, function (err) {
+        Post.update(req.params._id, req.body.title, req.body.tag, req.body.post,req.body.thumb,[
+            req.body.org1,
+            req.body.org2,
+            req.body.casetime,
+            req.body.target
+        ],req.body.posi, function (err) {
             var url = '/p/' + req.params._id;
             if (err) {
                 req.flash('error', err);
@@ -263,7 +270,7 @@ module.exports = function (app) {
             "}</script>";
             scriptStr += "</body></html>"
             if (err)  {
-                res.write('<script>parent.parent.submitCb("error","上传出错啦")</script>')
+                res.write('<script>parent.parent.submitCb("error",err)</script>')
                 return console.error(err);
             } else {
                 console.log("success!");
