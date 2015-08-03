@@ -418,6 +418,7 @@ module.exports = function (app) {
     app.post('/login', function (req, res) {
         var md5 = crypto.createHash('md5'),
             password = md5.update(req.body.password).digest('hex');
+
         User.get(req.body.name, function (err, user) {
             if (!user) {
                 req.flash('error', '用户不存在!');
@@ -438,6 +439,47 @@ module.exports = function (app) {
         req.session.user = null;
         req.flash('success', '登出成功!');
         res.redirect('/');
+    });
+    app.get('/msg',function(req,res){
+        //var FormData = require('form-data');
+        var request = require('request');
+        var querystring = require('querystring');
+
+        var date = new Date();
+        //存储各种时间格式，方便以后扩展
+        var time = {
+            year: date.getFullYear(),
+            month: (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) :(date.getMonth() + 1),
+            day: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()),
+            hours : (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()),
+            minute : (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
+            seconds : (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
+        };
+        var stamp = ""+time.year + time.month + time.day + time.hours + time.minute + time.seconds;
+        var md5 = crypto.createHash('md5'),
+            SigParameter = md5.update("8a48b5514ee2497d014ee3394cda0288"+"3386a31a235e431fa8d49a281909d3f7"+stamp).digest('hex');
+
+        var options = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': new Buffer('8a48b5514ee2497d014ee3394cda0288:' + stamp).toString('base64')
+            },
+            url: 'https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/8a48b5514ee2497d014ee3394cda0288/SMS/TemplateSMS?sig='+SigParameter,
+            method: 'POST',
+            json:true,
+            body: {to:"18628082771",appId:"8a48b5514ee2497d014ee33e2f610298",templateId:"1",datas:["8888","1xxx0"]}
+        };
+        function callback(error, response, data) {
+            if (!error && response.statusCode == 200) {
+                console.log('----info------',data);
+            }
+        }
+        request(options, callback);
+    });
+
+    app.post('/msg', function (req, res) {
+        console.info(req.body);
     });
 
     app.use(function (req, res) {
