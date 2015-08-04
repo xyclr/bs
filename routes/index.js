@@ -3,6 +3,7 @@ var crypto = require('crypto'),
     Sys = require('../models/sys.js'),
     User = require('../models/user.js'),
     Post = require('../models/post.js'),
+    Card = require('../models/card.js'),
     Comment = require('../models/comment.js'),
     async = require('async'),
     multer  = require('multer'),
@@ -86,6 +87,63 @@ module.exports = function (app) {
         });
     });
 
+
+    app.get('/card', checkLogin);
+    app.get('/card', function (req, res) {
+        res.render('card', {
+            title: '发表',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString(),
+            settings : settings
+        });
+    });
+
+    app.post('/card', checkLogin);
+    app.post('/card', function (req, res) {
+        var card = new Card( req.body.title, req.body.point, req.body.thumb, req.body.detail, [req.body.time1,req.body.time2], req.body.num);
+        card.save(function (err) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            req.flash('success', '发布成功!');
+            res.redirect('/cardarchive');
+        });
+    });
+
+    app.get('/cardarchive', function (req, res) {
+        Card.getArchive(function (err, posts) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('cardarchive', {
+                title: '存档',
+                posts: posts,
+                user: req.session.posts,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
+
+    app.get('/card/:_id', function(req, res){
+        Card.getOne(req.params._id, function (err, post) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('cardarticle', {
+                title: post.title,
+                post: post,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
+
     app.get('/archive', function (req, res) {
         Post.getArchive(function (err, posts) {
             if (err) {
@@ -132,7 +190,7 @@ module.exports = function (app) {
                 error: req.flash('error').toString()
             });
         });
-    })
+    });
 
     app.get('/u/:name/:day/:title', function (req, res) {
         Post.getOne(req.params.name, req.params.day, req.params.title, function (err, post) {
@@ -441,6 +499,7 @@ module.exports = function (app) {
         res.redirect('/');
     });
     app.get('/msg',function(req,res){
+
         //var FormData = require('form-data');
         var request = require('request');
         var querystring = require('querystring');
@@ -507,4 +566,6 @@ module.exports = function (app) {
         next();
     }
 }
+
+
 
