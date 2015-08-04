@@ -144,6 +144,54 @@ module.exports = function (app) {
         });
     });
 
+
+    app.get('/cedit/:_id', checkLogin);
+    app.get('/cedit/:_id', function (req, res) {
+        Card.edit(req.params._id, function (err, post) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('back');
+            }
+            res.render('edit', {
+                title: '编辑',
+                post: post,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString(),
+                settings : settings
+            });
+        });
+    });
+
+
+
+    app.post('/cedit/:_id', checkLogin);
+    app.post('/cedit/:_id', function (req, res) {
+        Card.update(req.params._id, req.body.title, req.body.point, req.body.thumb, req.body.detail, [req.body.time1,req.body.time2], req.body.num, function (err) {
+            var url = '/p/' + req.params._id;
+            if (err) {
+                req.flash('error', err);
+                return res.redirect(url);//出错！返回文章页
+            }
+            req.flash('success', '修改成功!');
+            res.redirect(url);//成功！返回文章页
+        });
+    });
+
+
+    app.get('/cremove/:_id', checkLogin);
+    app.get('/cremove/:_id', function (req, res) {
+        Card.remove(req.params._id, function (err) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('back');
+            }
+            req.flash('success', '删除成功!');
+            res.redirect('/');
+        });
+    });
+
+
     app.get('/archive', function (req, res) {
         Post.getArchive(function (err, posts) {
             if (err) {

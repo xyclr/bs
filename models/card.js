@@ -10,6 +10,7 @@ var cardSchema = new mongoose.Schema({
     detail: String,
     dtime: [],
     num: Number,
+    price : Number,
     time : {}
 }, {
     collection: 'cards'
@@ -17,13 +18,14 @@ var cardSchema = new mongoose.Schema({
 
 var cardModel = mongoose.model('Card', cardSchema);
 
-function Card(title,point, thumb,detail,dtime,cnum) {
+function Card(title,point, thumb,detail,dtime,num,price) {
     this.title = title;
     this.point = point;
     this.thumb = thumb;
     this.detail = detail;
     this.dtime = dtime;
-    this.num = cnum;
+    this.num = num;
+    this.price = price;
 }
 
 module.exports = Card;
@@ -47,6 +49,7 @@ Card.prototype.save = function (callback) {
         detail: this.detail,
         dtime : this.dtime,
         num : this.num,
+        price : this.price,
         time : time
     };
 
@@ -67,13 +70,6 @@ Card.getOne = function(_id, callback) {
             return callback(err);
         }
         if (doc) {
-            //每访问 1 次，pv 值增加 1
-            cardModel.update({"_id": new ObjectID(_id)}, {}, {
-                upsert: true
-            }, function (err, doc) {
-                console.info(err)
-            });
-
             callback(null, doc);
         }
     });
@@ -95,7 +91,7 @@ Card.edit = function (_id, callback) {
 };
 
 //更新一篇文章及其相关信息
-Card.update = function (_id, title,point, thumb,detail,dtime,cnum) {
+Card.update = function (_id, title,point, thumb,detail,dtime,num,price) {
     cardModel.update({
         "_id": new ObjectID(_id)
     },{
@@ -105,7 +101,8 @@ Card.update = function (_id, title,point, thumb,detail,dtime,cnum) {
             "thumb": thumb,
             "detail": detail,
             "dtime": dtime,
-            "cnum": cnum
+            "cnum": num,
+            "price": price,
         }
     },{
         upsert : true

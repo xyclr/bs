@@ -81,12 +81,25 @@
 								</style>
 								<table class="info-table">
 									<tr>
+										<td align="right"><strong>整体效果</strong>： </td>
+										<td>
+											<div class="cart-item" style="text-align: center;width:200px;overflow: hidden">
+												<div class="card" style="border:1px solid #ddd;border-radius: 5px;width:200px;height:100px;padding:20px;overflow: hidden">
+													<span class="price" style="float:left;font-size:20px;line-height:60px;">￥ 100</span>
+													<img src="<%- post.thumb %>"  class="card-logo" alt="" style="float:right;width:60px;height:60px;border-radius: 60px;"/>
+												</div>
+												<p style="margin-top:5px;font-size:12px;"><%- post.title %></p>
+											</div>
+
+										</td>
+									</tr>
+									<tr>
 										<td align="right"><strong>点数</strong>： </td>
 										<td><span class="text-muted"><%= post.point %> </span> </td>
 									</tr>
 									<tr>
 										<td align="right"><strong>卡券库存数量</strong>： </td>
-										<td><span class="text-muted"><%= post.time.num %> </span> </td>
+										<td><span class="text-muted"><%= post.num %> </span> </td>
 									</tr>
 									<tr>
 										<td align="right"><strong>卡券使用时间</strong>： </td>
