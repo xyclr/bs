@@ -103,10 +103,12 @@ module.exports = function (app) {
     app.post('/card', function (req, res) {
         var card = new Card( req.body.title, req.body.point, req.body.thumb, req.body.detail, [req.body.time1,req.body.time2], req.body.num);
         card.save(function (err) {
+            console.info(err)
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/');
             }
+
             req.flash('success', '发布成功!');
             res.redirect('/cardarchive');
         });
@@ -152,7 +154,7 @@ module.exports = function (app) {
                 req.flash('error', err);
                 return res.redirect('back');
             }
-            res.render('edit', {
+            res.render('cedit', {
                 title: '编辑',
                 post: post,
                 user: req.session.user,
@@ -167,8 +169,8 @@ module.exports = function (app) {
 
     app.post('/cedit/:_id', checkLogin);
     app.post('/cedit/:_id', function (req, res) {
-        Card.update(req.params._id, req.body.title, req.body.point, req.body.thumb, req.body.detail, [req.body.time1,req.body.time2], req.body.num, function (err) {
-            var url = '/p/' + req.params._id;
+        Card.update(req.params._id, req.body.title, req.body.point, req.body.thumb, req.body.detail, [req.body.time1,req.body.time2], req.body.num,  req.body.price, function (err) {
+            var url = '/card/' + req.params._id;
             if (err) {
                 req.flash('error', err);
                 return res.redirect(url);//出错！返回文章页

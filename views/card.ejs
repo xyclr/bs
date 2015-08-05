@@ -193,16 +193,16 @@
                     <label class="col-sm-2 control-label">点数</label>
                     <div class="col-sm-10">
                       <div class="row">
-                        <div class="col-md-4"><input type="text" placeholder="卡券兑换点数" class="form-control" name="point"></div>
+                        <div class="col-md-4"><input type="number" min="1" placeholder="卡券兑换点数" class="form-control" name="point"></div>
                       </div>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">卡券面试</label>
+                    <label class="col-sm-2 control-label">卡券面值</label>
                     <div class="col-sm-10">
                       <div class="row">
-                        <div class="col-md-4"><input type="text" placeholder="卡券面试" class="form-control" name="price"></div>
+                        <div class="col-md-4"><input type="number" min="1" placeholder="卡券面值" class="form-control" name="price"></div>
                       </div>
                     </div>
                   </div>
@@ -211,7 +211,7 @@
                     <label class="col-sm-2 control-label">卡券库存数量</label>
                     <div class="col-sm-10">
                       <div class="row">
-                        <div class="col-md-4"><input type="text" placeholder="卡券库存数量" class="form-control" name="num"></div>
+                        <div class="col-md-4"><input type="number" min="0" placeholder="卡券库存数量" class="form-control" name="num"></div>
                       </div>
                     </div>
                   </div>
@@ -220,8 +220,8 @@
                     <label class="col-sm-2 control-label">卡券使用时间</label>
                     <div class="col-sm-10">
                       <div class="row">
-                        <div class="col-md-4"><input type="text" placeholder="卡券使用开始时间" class="form-control" name="time1"></div>
-                        <div class="col-md-4"><input type="text" placeholder="卡券结束开始时间" class="form-control" name="time2"></div>
+                        <div class="col-md-4"><input type="date" placeholder="卡券使用开始时间" class="form-control" name="time1"></div>
+                        <div class="col-md-4"><input type="date" placeholder="卡券结束开始时间" class="form-control" name="time2"></div>
                       </div>
                     </div>
                   </div>
@@ -234,7 +234,7 @@
                       <div class="row">
                         <div class="col-md-10">
                           <div class="input-group" data-type="file">
-                            <input type="text" class="form-control cur" name="thumb" placeholder="请输入或者选择图片地址">
+                            <input type="url" class="form-control cur" name="thumb" placeholder="请输入或者选择图片地址">
                             <span class="input-group-btn"> <a class="btn btn-default btn-upload" data-toggle="modal" data-target="#fileUpload">选择</a> </span>
                           </div>
                         </div>

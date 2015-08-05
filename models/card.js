@@ -91,7 +91,7 @@ Card.edit = function (_id, callback) {
 };
 
 //更新一篇文章及其相关信息
-Card.update = function (_id, title,point, thumb,detail,dtime,num,price) {
+Card.update = function (_id, title,point, thumb,detail,dtime,num,price,callback) {
     cardModel.update({
         "_id": new ObjectID(_id)
     },{
@@ -102,7 +102,7 @@ Card.update = function (_id, title,point, thumb,detail,dtime,num,price) {
             "detail": detail,
             "dtime": dtime,
             "cnum": num,
-            "price": price,
+            "price": price
         }
     },{
         upsert : true

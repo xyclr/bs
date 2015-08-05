@@ -47,13 +47,13 @@
 
 		<div class="row wrapper border-bottom white-bg page-heading">
 			<div class="col-lg-10">
-				<h2>发布文章</h2>
+				<h2>卡券</h2>
 				<ol class="breadcrumb">
 					<li>
 						<a href="./">首页</a>
 					</li>
 					<li class="active">
-						<strong>文章编辑</strong>
+						<strong>卡券编辑</strong>
 					</li>
 				</ol>
 			</div>
@@ -72,11 +72,11 @@
 								<div class="row">
 									<div class="col-lg-3"> <h5>卡券</h5></div>
 									<div class="col-lg-9">
-										<div class="ibox-tools-btn">
+										<!--<div class="ibox-tools-btn">
 											<a class="btn btn-primary btn-xs" id="refresh"> <i class="fa fa-refresh btn-xs"></i> 刷新</a>
 											<a class="btn btn-primary btn-xs"> <i class="fa fa-save"></i> 保存</a>
-											<a class="btn btn-warning btn-xs" href="/remove/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"> <i class="fa fa-trash-o"></i> 删除</a>
-										</div>
+											<a class="btn btn-warning btn-xs" href="/cremove/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"> <i class="fa fa-trash-o"></i> 删除</a>
+										</div>-->
 									</div>
 								</div>
 							</div>
@@ -84,67 +84,45 @@
 								<form  method="post" class="form-horizontal" id="post">
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="title" >标题</label>
-										<div class="col-sm-10"><input type="text" class="form-control" id="title" name="title" placeholder="文章标题" value="<%= post.title %>" ></div>
+										<div class="col-sm-10"><input type="text" class="form-control" value="<%- post.title %>" id="title" name="title" placeholder="卡券标题"></div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label">标签</label>
+										<label class="col-sm-2 control-label">点数</label>
 										<div class="col-sm-10">
 											<div class="row">
-												<div class="col-md-4"><input type="text" placeholder=".标签" class="form-control" name="tag" value="<%= post.tags %>"></div>
+												<div class="col-md-4"><input type="number" min="1" value="<%- post.point%>" placeholder="卡券兑换点数" class="form-control" name="point"></div>
 											</div>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label">推荐位置</label>
+										<label class="col-sm-2 control-label">卡券面值</label>
 										<div class="col-sm-10">
 											<div class="row">
-												<div class="col-md-4"><input type="text" placeholder="1（首页banner）" class="form-control" name="posi" value="<%= post.posi %>"></div>
-											</div>
-										</div>
-									</div>
-
-									<!--extra start-->
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label">机执行机构名称构</label>
-										<div class="col-sm-10">
-											<div class="row">
-												<div class="col-md-4"><input type="text" placeholder=".执行机构名称" class="form-control" name="org1" value="<%= post.caseinfo[0] %>"></div>
-
+												<div class="col-md-4"><input type="number" min="1" placeholder="卡券面值" value="<%- post.price %>" class="form-control" name="price"></div>
 											</div>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label">捐款机构名称</label>
+										<label class="col-sm-2 control-label">卡券库存数量</label>
 										<div class="col-sm-10">
 											<div class="row">
-												<div class="col-md-4"><input type="text" placeholder=".捐款机构名称" class="form-control" name="org2" value="<%= post.caseinfo[1] %>"></div>
+												<div class="col-md-4"><input type="number" min="0" placeholder="卡券库存数量" value="<%- post.num %>" class="form-control" name="num"></div>
 											</div>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label">项目持续时间</label>
+										<label class="col-sm-2 control-label">卡券使用时间</label>
 										<div class="col-sm-10">
 											<div class="row">
-												<div class="col-md-4"><input type="text" placeholder=".时间（2015/7/16 - 2015/8/16）" class="form-control" name="casetime" value="<%= post.caseinfo[2] %>"></div>
+												<div class="col-md-4"><input type="date" placeholder="卡券使用开始时间" class="form-control" value="<%- post.dtime[0] %>" name="time1"></div>
+												<div class="col-md-4"><input type="date" placeholder="卡券结束开始时间" class="form-control" value="<%- post.dtime[1] %>" name="time2"></div>
 											</div>
 										</div>
 									</div>
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label">项目目标</label>
-										<div class="col-sm-10">
-											<div class="row">
-												<div class="col-md-4"><input type="text" placeholder=".目标" class="form-control" name="target" value="<%= post.caseinfo[3] %>"></div>
-											</div>
-										</div>
-									</div>
-
-
 
 									<!--extra end-->
 
@@ -154,7 +132,7 @@
 											<div class="row">
 												<div class="col-md-10">
 													<div class="input-group" data-type="file">
-														<input type="text" class="form-control cur" name="thumb" value="<%= post.thumb %>">
+														<input type="url" class="form-control cur" name="thumb" value="<%- post.thumb %>" placeholder="请输入或者选择图片地址">
 														<span class="input-group-btn"> <a class="btn btn-default btn-upload" data-toggle="modal" data-target="#fileUpload">选择</a> </span>
 													</div>
 												</div>
@@ -163,9 +141,9 @@
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label">正文</label>
+										<label class="col-sm-2 control-label">卡券介绍信息</label>
 										<div class="col-sm-10">
-											<textarea name="post"  class="summernote"><%= post.post %></textarea>
+											<textarea name="detail"  class="summernote"><p><%- post.detail %></p></textarea>
 										</div>
 									</div>
 									<div class="hr-line-dashed"></div>

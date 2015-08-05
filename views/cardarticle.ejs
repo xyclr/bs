@@ -67,8 +67,8 @@
 					<div class="ibox">
 						<div class="ibox-content">
 							<div class="pull-right">
-								<a class="btn btn-primary btn-xs" href="/edit/<%= post._id %>" > <i class="fa fa-edit"></i> 编辑</a>
-								<a class="btn btn-warning btn-xs"  href="/remove/<%= post._id %>" > <i class="fa fa-del"></i> 删除</a>
+								<a class="btn btn-primary btn-xs" href="/cedit/<%= post._id %>" > <i class="fa fa-edit"></i> 编辑</a>
+								<a class="btn btn-warning btn-xs"  href="/cremove/<%= post._id %>" > <i class="fa fa-del"></i> 删除</a>
 							</div>
 							<div class="text-center article-title">
 								<h1>
@@ -85,7 +85,7 @@
 										<td>
 											<div class="cart-item" style="text-align: center;width:200px;overflow: hidden">
 												<div class="card" style="border:1px solid #ddd;border-radius: 5px;width:200px;height:100px;padding:20px;overflow: hidden">
-													<span class="price" style="float:left;font-size:20px;line-height:60px;">￥ 100</span>
+													<span class="price" style="float:left;font-size:20px;line-height:60px;">￥ <%= post.price %> </span>
 													<img src="<%- post.thumb %>"  class="card-logo" alt="" style="float:right;width:60px;height:60px;border-radius: 60px;"/>
 												</div>
 												<p style="margin-top:5px;font-size:12px;"><%- post.title %></p>
@@ -96,6 +96,10 @@
 									<tr>
 										<td align="right"><strong>点数</strong>： </td>
 										<td><span class="text-muted"><%= post.point %> </span> </td>
+									</tr>
+									<tr>
+										<td align="right"><strong>面值</strong>： </td>
+										<td><span class="text-muted"><%= post.price %> </span> </td>
 									</tr>
 									<tr>
 										<td align="right"><strong>卡券库存数量</strong>： </td>
