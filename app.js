@@ -56,7 +56,7 @@ app.use(express.session({
   key: settings.db,//cookie name
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
   store: new MongoStore({
-    db: settings.db
+    url: 'mongodb://ndesig:gjj123456@45.79.9.136:27017/bs'
   })
 }));
 
