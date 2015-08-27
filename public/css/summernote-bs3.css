@@ -2,6 +2,7 @@
   /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 
 }
+.note-editor .note-editable {height:500px;}
 .note-editor article,
 .note-editor aside,
 .note-editor details,
